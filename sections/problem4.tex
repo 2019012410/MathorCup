@@ -1,0 +1,51 @@
+\section{问题四：故障感知的资源调度优化}
+\subsection{问题描述与线性规划建模}
+在BO3赛制中，每局比赛独立。资源包括：人工复位 $x_1$（最多2次）、战术暂停 $x_2$（最多2次）、紧急维修 $x_3$（最多1次）。设第 $k$ 局开始时资源剩余向量为 $\mathbf{r}_k$，使用决策变量 $u_{k,i} \in \{0,1\}$ 表示第 $k$ 局是否使用资源 $i$。每局的胜率 $P_{\text{win}}(s_k, \mathbf{r}_k, \mathbf{u}_k)$ 可通过问题三的MDP嵌入故障影响后估计。目标是最大化BO3总胜率。
+
+假设单局基础胜率（无故障时）为 $p_0$，故障发生概率为 $q$，使用资源可降低故障影响：人工复位将故障后状态恢复至空闲，战术暂停提供临时修复机会，紧急维修彻底消除本次故障。则可建立如下线性规划近似：
+
+设总资源上限为 $R_1=2, R_2=2, R_3=1$。决策变量 $y_{k,i}$ 表示第 $k$ 局使用资源 $i$ 的次数。期望总胜率最大化等价于最大化各局调整后胜率的加权和。定义线性规划模型：
+\begin{align}
+\max \quad & \sum_{k=1}^{3} \big( p_0 + \Delta_1 y_{k,1} + \Delta_2 y_{k,2} + \Delta_3 y_{k,3} \big) \\
+\text{s.t.} \quad & \sum_{k=1}^{3} y_{k,i} \le R_i, \quad i=1,2,3 \\
+& 0 \le y_{k,i} \le \text{单局可用上限}, \quad y_{k,i} \in \mathbb{Z}_{\ge 0}.
+\end{align}
+其中 $\Delta_i$ 为使用单位资源 $i$ 带来的胜率提升（由MDP仿真拟合）。
+
+\subsection{结合MDP的求解框架}
+实际求解中，我们将资源决策嵌入到MDP状态中，形成\textbf{资源增强MDP}。状态扩展为 $(s,t,\mathbf{r})$，动作包含攻击/防御及是否使用资源。由于状态空间扩大，采用近似动态规划或线性规划松弛求解。
+
+\begin{algorithm}[H]
+\caption{资源调度线性规划求解（结合MDP仿真）}
+\label{alg:resource_lp}
+\begin{algorithmic}[1]
+\Require 基础MDP策略 $\pi_0$，故障率 $q$，资源上限 $R_i$，仿真次数 $M$
+\Ensure 各局最优资源分配方案 $\{y_{k,i}^*\}$
+\State \textbf{// 步骤1：通过MDP仿真估计资源边际收益}
+\For{每种资源 $i \in \{1,2,3\}$}
+    \State 运行 $M$ 次BO3仿真，记录使用1单位资源 $i$ 时的胜率提升 $\Delta_i$
+\EndFor
+\State \textbf{// 步骤2：求解整数线性规划}
+\State 建立目标函数 $\sum_{k=1}^{3} \sum_{i=1}^{3} \Delta_i \cdot y_{k,i}$
+\State 添加资源总量约束 $\sum_{k} y_{k,i} \le R_i$
+\State 添加单局约束（如紧急维修每局至多1次）
+\State 调用整数规划求解器获得 $y_{k,i}^*$
+\State \Return $\{y_{k,i}^*\}$ 及对应的BO3胜率期望
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{场景化资源使用建议}
+基于求解结果，得到不同比赛场景下的资源使用策略：
+\begin{table}[H]
+\centering
+\caption{不同场景下的资源使用建议}
+\begin{tabular}{l c c c}
+\toprule
+场景 & 人工复位 & 战术暂停 & 紧急维修 \\
+\midrule
+领先（1:0） & 保守使用（优先留至决胜局） & 故障即用 & 保留至关键故障 \\
+落后（0:1） & 果断使用以扳平比分 & 故障即用 & 立即使用 \\
+平局（1:1） & 全部可用资源投入 & 全部可用资源投入 & 关键故障使用 \\
+\bottomrule
+\end{tabular}
+\end{table}

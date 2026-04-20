@@ -1,0 +1,585 @@
+{
+  "seed": 20260420,
+  "states": {
+    "0": "Idle",
+    "1": "Guard",
+    "2": "MinorUnstable",
+    "3": "MajorUnstable",
+    "4": "Down"
+  },
+  "attack_types": {
+    "stable_attack": "Directly chainable",
+    "unstable_attack": "Requires reposition"
+  },
+  "actions": [
+    {
+      "id": "jab",
+      "name": "jab",
+      "name_cn": "刺拳",
+      "category": "attack",
+      "attack_type": "stable_attack",
+      "type": "stable",
+      "base_damage": 0.34,
+      "stability": 0.93,
+      "legal_from": [0, 1, 2, 3],
+      "self_transition": { "0": 0.93, "2": 0.07 },
+      "base_hit_prob": 0.859,
+      "opp_effect_on_hit": {
+        "0": { "0": 0.464, "1": 0.0, "2": 0.242, "3": 0.155, "4": 0.139 },
+        "1": { "0": 0.0, "1": 0.544, "2": 0.242, "3": 0.125, "4": 0.089 },
+        "2": { "0": 0.0, "1": 0.0, "2": 0.395, "3": 0.352, "4": 0.253 },
+        "3": { "0": 0.0, "1": 0.0, "2": 0.0, "3": 0.497, "4": 0.503 },
+        "4": { "0": 0.0, "1": 0.0, "2": 0.0, "3": 0.0, "4": 1.0 }
+      },
+      "blockable": true,
+      "stamina_cost": 9.44,
+      "recovery_frames": 12
+    },
+    {
+      "id": "cross",
+      "name": "cross",
+      "name_cn": "后手直拳",
+      "category": "attack",
+      "attack_type": "stable_attack",
+      "type": "stable",
+      "base_damage": 0.47,
+      "stability": 0.89,
+      "legal_from": [0, 1, 2, 3],
+      "self_transition": { "0": 0.89, "2": 0.077, "3": 0.022, "4": 0.011 },
+      "base_hit_prob": 0.869,
+      "opp_effect_on_hit": {
+        "0": { "0": 0.347, "1": 0.0, "2": 0.281, "3": 0.192, "4": 0.18 },
+        "1": { "0": 0.0, "1": 0.427, "2": 0.281, "3": 0.162, "4": 0.13 },
+        "2": { "0": 0.0, "1": 0.0, "2": 0.297, "3": 0.391, "4": 0.311 },
+        "3": { "0": 0.0, "1": 0.0, "2": 0.0, "3": 0.439, "4": 0.561 },
+        "4": { "0": 0.0, "1": 0.0, "2": 0.0, "3": 0.0, "4": 1.0 }
+      },
+      "blockable": true,
+      "stamina_cost": 11.52,
+      "recovery_frames": 12
+    },
+    {
+      "id": "hook",
+      "name": "hook",
+      "name_cn": "摆拳",
+      "category": "attack",
+      "attack_type": "stable_attack",
+      "type": "semi_stable",
+      "base_damage": 0.53,
+      "stability": 0.78,
+      "legal_from": [0, 1, 2, 3],
+      "self_transition": { "0": 0.78, "2": 0.154, "3": 0.044, "4": 0.022 },
+      "base_hit_prob": 0.845,
+      "opp_effect_on_hit": {
+        "0": { "0": 0.293, "1": 0.0, "2": 0.299, "3": 0.208, "4": 0.2 },
+        "1": { "0": 0.0, "1": 0.373, "2": 0.299, "3": 0.178, "4": 0.15 },
+        "2": { "0": 0.0, "1": 0.0, "2": 0.252, "3": 0.409, "4": 0.339 },
+        "3": { "0": 0.0, "1": 0.0, "2": 0.0, "3": 0.411, "4": 0.589 },
+        "4": { "0": 0.0, "1": 0.0, "2": 0.0, "3": 0.0, "4": 1.0 }
+      },
+      "blockable": true,
+      "stamina_cost": 12.48,
+      "recovery_frames": 18
+    },
+    {
+      "id": "uppercut",
+      "name": "uppercut",
+      "name_cn": "上勾拳",
+      "category": "attack",
+      "attack_type": "stable_attack",
+      "type": "semi_stable",
+      "base_damage": 0.59,
+      "stability": 0.75,
+      "legal_from": [0, 1, 2, 3],
+      "self_transition": { "0": 0.75, "2": 0.175, "3": 0.05, "4": 0.025 },
+      "base_hit_prob": 0.846,
+      "opp_effect_on_hit": {
+        "0": { "0": 0.239, "1": 0.0, "2": 0.317, "3": 0.225, "4": 0.219 },
+        "1": { "0": 0.0, "1": 0.319, "2": 0.317, "3": 0.195, "4": 0.169 },
+        "2": { "0": 0.0, "1": 0.0, "2": 0.25, "3": 0.384, "4": 0.366 },
+        "3": { "0": 0.0, "1": 0.0, "2": 0.0, "3": 0.385, "4": 0.615 },
+        "4": { "0": 0.0, "1": 0.0, "2": 0.0, "3": 0.0, "4": 1.0 }
+      },
+      "blockable": true,
+      "stamina_cost": 13.44,
+      "recovery_frames": 18
+    },
+    {
+      "id": "front_kick",
+      "name": "front_kick",
+      "name_cn": "前蹬腿",
+      "category": "attack",
+      "attack_type": "stable_attack",
+      "type": "semi_stable",
+      "base_damage": 0.66,
+      "stability": 0.74,
+      "legal_from": [0, 1, 2, 3],
+      "self_transition": { "0": 0.74, "2": 0.182, "3": 0.052, "4": 0.026 },
+      "base_hit_prob": 0.856,
+      "opp_effect_on_hit": {
+        "0": { "0": 0.176, "1": 0.0, "2": 0.338, "3": 0.245, "4": 0.241 },
+        "1": { "0": 0.0, "1": 0.256, "2": 0.338, "3": 0.215, "4": 0.191 },
+        "2": { "0": 0.0, "1": 0.0, "2": 0.25, "3": 0.353, "4": 0.397 },
+        "3": { "0": 0.0, "1": 0.0, "2": 0.0, "3": 0.353, "4": 0.647 },
+        "4": { "0": 0.0, "1": 0.0, "2": 0.0, "3": 0.0, "4": 1.0 }
+      },
+      "blockable": true,
+      "stamina_cost": 14.56,
+      "recovery_frames": 18
+    },
+    {
+      "id": "roundhouse",
+      "name": "roundhouse",
+      "name_cn": "回旋踢",
+      "category": "attack",
+      "attack_type": "unstable_attack",
+      "type": "unstable",
+      "base_damage": 0.73,
+      "stability": 0.63,
+      "legal_from": [0, 1, 2],
+      "self_transition": { "0": 0.63, "2": 0.259, "3": 0.074, "4": 0.037 },
+      "base_hit_prob": 0.833,
+      "opp_effect_on_hit": {
+        "0": { "0": 0.113, "1": 0.0, "2": 0.359, "3": 0.264, "4": 0.264 },
+        "1": { "0": 0.0, "1": 0.193, "2": 0.359, "3": 0.234, "4": 0.214 },
+        "2": { "0": 0.0, "1": 0.0, "2": 0.25, "3": 0.322, "4": 0.428 },
+        "3": { "0": 0.0, "1": 0.0, "2": 0.0, "3": 0.322, "4": 0.678 },
+        "4": { "0": 0.0, "1": 0.0, "2": 0.0, "3": 0.0, "4": 1.0 }
+      },
+      "blockable": true,
+      "stamina_cost": 15.68,
+      "recovery_frames": 30
+    },
+    {
+      "id": "axe_kick",
+      "name": "axe_kick",
+      "name_cn": "下劈腿",
+      "category": "attack",
+      "attack_type": "unstable_attack",
+      "type": "unstable",
+      "base_damage": 0.82,
+      "stability": 0.54,
+      "legal_from": [0, 1, 2],
+      "self_transition": { "0": 0.54, "2": 0.322, "3": 0.092, "4": 0.046 },
+      "base_hit_prob": 0.82,
+      "opp_effect_on_hit": {
+        "0": { "0": 0.032, "1": 0.0, "2": 0.386, "3": 0.29, "4": 0.292 },
+        "1": { "0": 0.0, "1": 0.112, "2": 0.386, "3": 0.26, "4": 0.242 },
+        "2": { "0": 0.0, "1": 0.0, "2": 0.25, "3": 0.281, "4": 0.469 },
+        "3": { "0": 0.0, "1": 0.0, "2": 0.0, "3": 0.281, "4": 0.719 },
+        "4": { "0": 0.0, "1": 0.0, "2": 0.0, "3": 0.0, "4": 1.0 }
+      },
+      "blockable": true,
+      "stamina_cost": 17.12,
+      "recovery_frames": 30
+    },
+    {
+      "id": "side_kick",
+      "name": "side_kick",
+      "name_cn": "侧踢",
+      "category": "attack",
+      "attack_type": "stable_attack",
+      "type": "semi_stable",
+      "base_damage": 0.64,
+      "stability": 0.69,
+      "legal_from": [0, 1, 2, 3],
+      "self_transition": { "0": 0.69, "2": 0.217, "3": 0.062, "4": 0.031 },
+      "base_hit_prob": 0.836,
+      "opp_effect_on_hit": {
+        "0": { "0": 0.194, "1": 0.0, "2": 0.332, "3": 0.239, "4": 0.235 },
+        "1": { "0": 0.0, "1": 0.274, "2": 0.332, "3": 0.209, "4": 0.185 },
+        "2": { "0": 0.0, "1": 0.0, "2": 0.25, "3": 0.362, "4": 0.388 },
+        "3": { "0": 0.0, "1": 0.0, "2": 0.0, "3": 0.362, "4": 0.638 },
+        "4": { "0": 0.0, "1": 0.0, "2": 0.0, "3": 0.0, "4": 1.0 }
+      },
+      "blockable": true,
+      "stamina_cost": 14.24,
+      "recovery_frames": 18
+    },
+    {
+      "id": "knee_strike",
+      "name": "knee_strike",
+      "name_cn": "顶膝",
+      "category": "attack",
+      "attack_type": "stable_attack",
+      "type": "semi_stable",
+      "base_damage": 0.62,
+      "stability": 0.68,
+      "legal_from": [0, 1, 2, 3],
+      "self_transition": { "0": 0.68, "2": 0.224, "3": 0.064, "4": 0.032 },
+      "base_hit_prob": 0.829,
+      "opp_effect_on_hit": {
+        "0": { "0": 0.212, "1": 0.0, "2": 0.326, "3": 0.234, "4": 0.228 },
+        "1": { "0": 0.0, "1": 0.292, "2": 0.326, "3": 0.204, "4": 0.178 },
+        "2": { "0": 0.0, "1": 0.0, "2": 0.25, "3": 0.371, "4": 0.379 },
+        "3": { "0": 0.0, "1": 0.0, "2": 0.0, "3": 0.371, "4": 0.629 },
+        "4": { "0": 0.0, "1": 0.0, "2": 0.0, "3": 0.0, "4": 1.0 }
+      },
+      "blockable": true,
+      "stamina_cost": 13.92,
+      "recovery_frames": 18
+    },
+    {
+      "id": "elbow",
+      "name": "elbow",
+      "name_cn": "肘击",
+      "category": "attack",
+      "attack_type": "stable_attack",
+      "type": "semi_stable",
+      "base_damage": 0.58,
+      "stability": 0.72,
+      "legal_from": [0, 1, 2, 3],
+      "self_transition": { "0": 0.72, "2": 0.196, "3": 0.056, "4": 0.028 },
+      "base_hit_prob": 0.835,
+      "opp_effect_on_hit": {
+        "0": { "0": 0.248, "1": 0.0, "2": 0.314, "3": 0.222, "4": 0.216 },
+        "1": { "0": 0.0, "1": 0.328, "2": 0.314, "3": 0.192, "4": 0.166 },
+        "2": { "0": 0.0, "1": 0.0, "2": 0.25, "3": 0.389, "4": 0.361 },
+        "3": { "0": 0.0, "1": 0.0, "2": 0.0, "3": 0.389, "4": 0.611 },
+        "4": { "0": 0.0, "1": 0.0, "2": 0.0, "3": 0.0, "4": 1.0 }
+      },
+      "blockable": true,
+      "stamina_cost": 13.28,
+      "recovery_frames": 18
+    },
+    {
+      "id": "low_kick",
+      "name": "low_kick",
+      "name_cn": "低扫腿",
+      "category": "attack",
+      "attack_type": "stable_attack",
+      "type": "stable",
+      "base_damage": 0.51,
+      "stability": 0.83,
+      "legal_from": [0, 1, 2, 3],
+      "self_transition": { "0": 0.83, "2": 0.119, "3": 0.034, "4": 0.017 },
+      "base_hit_prob": 0.857,
+      "opp_effect_on_hit": {
+        "0": { "0": 0.311, "1": 0.0, "2": 0.293, "3": 0.203, "4": 0.193 },
+        "1": { "0": 0.0, "1": 0.391, "2": 0.293, "3": 0.173, "4": 0.143 },
+        "2": { "0": 0.0, "1": 0.0, "2": 0.267, "3": 0.403, "4": 0.33 },
+        "3": { "0": 0.0, "1": 0.0, "2": 0.0, "3": 0.42, "4": 0.58 },
+        "4": { "0": 0.0, "1": 0.0, "2": 0.0, "3": 0.0, "4": 1.0 }
+      },
+      "blockable": true,
+      "stamina_cost": 12.16,
+      "recovery_frames": 12
+    },
+    {
+      "id": "spinning_back_kick",
+      "name": "spinning_back_kick",
+      "name_cn": "转身后蹬",
+      "category": "attack",
+      "attack_type": "unstable_attack",
+      "type": "unstable",
+      "base_damage": 0.79,
+      "stability": 0.52,
+      "legal_from": [0, 1, 2],
+      "self_transition": { "0": 0.52, "2": 0.336, "3": 0.096, "4": 0.048 },
+      "base_hit_prob": 0.809,
+      "opp_effect_on_hit": {
+        "0": { "0": 0.059, "1": 0.0, "2": 0.377, "3": 0.281, "4": 0.283 },
+        "1": { "0": 0.0, "1": 0.139, "2": 0.377, "3": 0.251, "4": 0.233 },
+        "2": { "0": 0.0, "1": 0.0, "2": 0.25, "3": 0.294, "4": 0.456 },
+        "3": { "0": 0.0, "1": 0.0, "2": 0.0, "3": 0.294, "4": 0.706 },
+        "4": { "0": 0.0, "1": 0.0, "2": 0.0, "3": 0.0, "4": 1.0 }
+      },
+      "blockable": true,
+      "stamina_cost": 16.64,
+      "recovery_frames": 30
+    },
+    {
+      "id": "flying_knee",
+      "name": "flying_knee",
+      "name_cn": "腾空膝击",
+      "category": "attack",
+      "attack_type": "unstable_attack",
+      "type": "unstable",
+      "base_damage": 0.86,
+      "stability": 0.47,
+      "legal_from": [0, 1, 2],
+      "self_transition": { "0": 0.47, "2": 0.371, "3": 0.106, "4": 0.053 },
+      "base_hit_prob": 0.805,
+      "opp_effect_on_hit": {
+        "0": { "0": 0.0, "1": 0.0, "2": 0.396, "3": 0.3, "4": 0.304 },
+        "1": { "0": 0.0, "1": 0.076, "2": 0.398, "3": 0.271, "4": 0.255 },
+        "2": { "0": 0.0, "1": 0.0, "2": 0.25, "3": 0.263, "4": 0.487 },
+        "3": { "0": 0.0, "1": 0.0, "2": 0.0, "3": 0.263, "4": 0.737 },
+        "4": { "0": 0.0, "1": 0.0, "2": 0.0, "3": 0.0, "4": 1.0 }
+      },
+      "blockable": true,
+      "stamina_cost": 17.76,
+      "recovery_frames": 30
+    },
+
+    {
+      "id": "cross_block",
+      "name": "cross_block",
+      "name_cn": "十字格挡",
+      "category": "defense",
+      "legal_from": [0, 1, 2, 3],
+      "self_transition": { "1": 0.82, "2": 0.13, "3": 0.05 },
+      "block_prob": {
+        "jab": 0.68, "cross": 0.65, "hook": 0.60, "uppercut": 0.55,
+        "front_kick": 0.45, "roundhouse": 0.30, "axe_kick": 0.25,
+        "side_kick": 0.40, "knee_strike": 0.42, "elbow": 0.48,
+        "low_kick": 0.35, "spinning_back_kick": 0.28, "flying_knee": 0.20,
+        "default": 0.45
+      },
+      "mitigate_map": { "4": "3", "3": "2", "2": "1" },
+      "counter_window_prob": 0.25,
+      "stamina_cost": 0.24
+    },
+    {
+      "id": "parry_single",
+      "name": "parry_single",
+      "name_cn": "单手拍挡",
+      "category": "defense",
+      "legal_from": [0, 1, 2, 3],
+      "self_transition": { "1": 0.80, "2": 0.15, "3": 0.05 },
+      "block_prob": {
+        "jab": 0.72, "cross": 0.68, "front_kick": 0.55, "side_kick": 0.50,
+        "default": 0.55
+      },
+      "mitigate_map": { "4": "3", "3": "2", "2": "1" },
+      "counter_window_prob": 0.35,
+      "stamina_cost": 0.20
+    },
+    {
+      "id": "elbow_block",
+      "name": "elbow_block",
+      "name_cn": "肘挡",
+      "category": "defense",
+      "legal_from": [0, 1, 2, 3],
+      "self_transition": { "1": 0.83, "2": 0.12, "3": 0.05 },
+      "block_prob": {
+        "hook": 0.65, "uppercut": 0.60, "elbow": 0.55, "knee_strike": 0.50,
+        "default": 0.50
+      },
+      "mitigate_map": { "4": "3", "3": "2", "2": "1" },
+      "counter_window_prob": 0.22,
+      "stamina_cost": 0.22
+    },
+    {
+      "id": "low_parry",
+      "name": "low_parry",
+      "name_cn": "下压格挡",
+      "category": "defense",
+      "legal_from": [0, 1, 2, 3],
+      "self_transition": { "1": 0.84, "2": 0.11, "3": 0.05 },
+      "block_prob": {
+        "low_kick": 0.70, "front_kick": 0.50,
+        "default": 0.48
+      },
+      "mitigate_map": { "4": "3", "3": "2", "2": "1" },
+      "counter_window_prob": 0.28,
+      "stamina_cost": 0.18
+    },
+    {
+      "id": "clinch_block",
+      "name": "clinch_block",
+      "name_cn": "钳制格挡",
+      "category": "defense",
+      "legal_from": [0, 1, 2, 3],
+      "self_transition": { "1": 0.78, "2": 0.16, "3": 0.06 },
+      "block_prob": {
+        "jab": 0.55, "cross": 0.50, "hook": 0.45, "elbow": 0.40,
+        "default": 0.42
+      },
+      "mitigate_map": { "4": "3", "3": "2", "2": "1" },
+      "counter_window_prob": 0.30,
+      "stamina_cost": 0.26
+    },
+    {
+      "id": "side_sway",
+      "name": "side_sway",
+      "name_cn": "左右侧闪",
+      "category": "defense",
+      "legal_from": [0, 1, 2, 3],
+      "self_transition": { "1": 0.75, "2": 0.18, "3": 0.07 },
+      "block_prob": {
+        "jab": 0.45, "cross": 0.50, "front_kick": 0.40,
+        "default": 0.42
+      },
+      "mitigate_map": { "4": "3", "3": "2", "2": "1" },
+      "counter_window_prob": 0.45,
+      "stamina_cost": 0.28
+    },
+    {
+      "id": "duck_dodge",
+      "name": "duck_dodge",
+      "name_cn": "下潜闪避",
+      "category": "defense",
+      "legal_from": [0, 1, 2, 3],
+      "self_transition": { "1": 0.73, "2": 0.19, "3": 0.08 },
+      "block_prob": {
+        "hook": 0.60, "roundhouse": 0.55, "axe_kick": 0.40,
+        "default": 0.45
+      },
+      "mitigate_map": { "4": "3", "3": "2", "2": "1" },
+      "counter_window_prob": 0.42,
+      "stamina_cost": 0.30
+    },
+    {
+      "id": "back_step",
+      "name": "back_step",
+      "name_cn": "后撤步",
+      "category": "defense",
+      "legal_from": [0, 1, 2, 3],
+      "self_transition": { "1": 0.78, "2": 0.16, "3": 0.06 },
+      "block_prob": {
+        "jab": 0.38, "cross": 0.42, "front_kick": 0.45, "side_kick": 0.40,
+        "default": 0.40
+      },
+      "mitigate_map": { "4": "3", "3": "2", "2": "1" },
+      "counter_window_prob": 0.48,
+      "stamina_cost": 0.26
+    },
+    {
+      "id": "spin_dodge",
+      "name": "spin_dodge",
+      "name_cn": "转身闪避",
+      "category": "defense",
+      "legal_from": [0, 1, 2, 3],
+      "self_transition": { "1": 0.70, "2": 0.21, "3": 0.09 },
+      "block_prob": {
+        "roundhouse": 0.55, "spinning_back_kick": 0.45, "side_kick": 0.50,
+        "default": 0.42
+      },
+      "mitigate_map": { "4": "3", "3": "2", "2": "1" },
+      "counter_window_prob": 0.50,
+      "stamina_cost": 0.32
+    },
+    {
+      "id": "slide_step",
+      "name": "slide_step",
+      "name_cn": "滑步环绕",
+      "category": "defense",
+      "legal_from": [0, 1, 2, 3],
+      "self_transition": { "1": 0.76, "2": 0.17, "3": 0.07 },
+      "block_prob": {
+        "jab": 0.35, "cross": 0.38, "default": 0.35
+      },
+      "mitigate_map": { "4": "3", "3": "2", "2": "1" },
+      "counter_window_prob": 0.55,
+      "stamina_cost": 0.30
+    },
+    {
+      "id": "head_guard",
+      "name": "head_guard",
+      "name_cn": "护头防御",
+      "category": "defense",
+      "legal_from": [0, 1, 2, 3],
+      "self_transition": { "1": 0.85, "2": 0.11, "3": 0.04 },
+      "block_prob": {
+        "jab": 0.65, "cross": 0.60, "hook": 0.58, "uppercut": 0.55,
+        "default": 0.55
+      },
+      "mitigate_map": { "4": "3", "3": "2", "2": "1" },
+      "counter_window_prob": 0.20,
+      "stamina_cost": 0.20
+    },
+    {
+      "id": "crouch_guard",
+      "name": "crouch_guard",
+      "name_cn": "沉身防御",
+      "category": "defense",
+      "legal_from": [0, 1, 2, 3],
+      "self_transition": { "1": 0.88, "2": 0.09, "3": 0.03 },
+      "block_prob": {
+        "jab": 0.55, "cross": 0.52, "low_kick": 0.60,
+        "default": 0.50
+      },
+      "mitigate_map": { "4": "3", "3": "2", "2": "1" },
+      "counter_window_prob": 0.18,
+      "stamina_cost": 0.18
+    },
+    {
+      "id": "side_guard",
+      "name": "side_guard",
+      "name_cn": "侧身防御",
+      "category": "defense",
+      "legal_from": [0, 1, 2, 3],
+      "self_transition": { "1": 0.83, "2": 0.13, "3": 0.04 },
+      "block_prob": {
+        "jab": 0.58, "cross": 0.55, "front_kick": 0.50,
+        "default": 0.52
+      },
+      "mitigate_map": { "4": "3", "3": "2", "2": "1" },
+      "counter_window_prob": 0.22,
+      "stamina_cost": 0.21
+    },
+    {
+      "id": "balance_recovery",
+      "name": "balance_recovery",
+      "name_cn": "重心补偿",
+      "category": "defense",
+      "legal_from": [2, 3],
+      "self_transition": { "0": 0.20, "1": 0.40, "2": 0.35, "3": 0.05 },
+      "block_prob": { "default": 0.0 },
+      "mitigate_map": { "4": "3", "3": "2", "2": "1" },
+      "counter_window_prob": 0.10,
+      "stamina_cost": 0.30
+    },
+    {
+      "id": "impact_absorption",
+      "name": "impact_absorption",
+      "name_cn": "卸力缓冲",
+      "category": "defense",
+      "legal_from": [0, 1, 2, 3],
+      "self_transition": { "1": 0.80, "2": 0.15, "3": 0.05 },
+      "block_prob": { "default": 0.25 },
+      "mitigate_map": { "4": "3", "3": "2", "2": "1" },
+      "counter_window_prob": 0.15,
+      "stamina_cost": 0.22
+    },
+    {
+      "id": "footwork_adjust",
+      "name": "footwork_adjust",
+      "name_cn": "步点调整",
+      "category": "defense",
+      "legal_from": [2, 3],
+      "self_transition": { "0": 0.15, "1": 0.35, "2": 0.45, "3": 0.05 },
+      "block_prob": { "default": 0.0 },
+      "mitigate_map": { "4": "3", "3": "2", "2": "1" },
+      "counter_window_prob": 0.12,
+      "stamina_cost": 0.25
+    },
+    {
+      "id": "controlled_fall",
+      "name": "controlled_fall",
+      "name_cn": "受控倒地",
+      "category": "defense",
+      "legal_from": [3],
+      "self_transition": { "4": 0.90, "3": 0.10 },
+      "block_prob": { "default": 0.0 },
+      "mitigate_map": { "4": "3" },
+      "counter_window_prob": 0.05,
+      "stamina_cost": 0.35
+    },
+    {
+      "id": "quick_getup",
+      "name": "quick_getup",
+      "name_cn": "快速起身",
+      "category": "defense",
+      "legal_from": [4],
+      "self_transition": { "0": 0.30, "1": 0.40, "2": 0.25, "3": 0.05 },
+      "block_prob": { "default": 0.0 },
+      "mitigate_map": {},
+      "counter_window_prob": 0.0,
+      "stamina_cost": 0.50
+    },
+    {
+      "id": "ground_defense",
+      "name": "ground_defense",
+      "name_cn": "倒地防御",
+      "category": "defense",
+      "legal_from": [4],
+      "self_transition": { "4": 0.95, "3": 0.05 },
+      "block_prob": { "default": 0.30 },
+      "mitigate_map": { "4": "3" },
+      "counter_window_prob": 0.0,
+      "stamina_cost": 0.28
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+\appendix
+\section{附录一：13种攻击动作}
+\begin{longtable}{ll}
+\toprule
+名称 & 类型 \\
+\midrule
+刺拳 (jab) & 稳定攻击 \\
+后手直拳 (cross) & 稳定攻击 \\
+前手摆拳 (lead\_hook) & 稳定攻击 \\
+后手摆拳 (rear\_hook) & 稳定攻击 \\
+上勾拳 (uppercut) & 稳定攻击 \\
+身体打击 (body\_shot) & 稳定攻击 \\
+肘击 (elbow\_strike) & 稳定攻击 \\
+前蹬腿 (front\_kick) & 稳定攻击 \\
+转身鞭拳 (spinning\_backfist) & 非稳定攻击 \\
+飞膝 (flying\_knee) & 非稳定攻击 \\
+下劈腿 (axe\_kick) & 非稳定攻击 \\
+大摆拳 (haymaker) & 非稳定攻击 \\
+冲刺连击 (rush\_combo) & 非稳定攻击 \\
+\bottomrule
+\end{longtable}
+
+\section{附录二：22种防守动作}
+\begin{longtable}{ll}
+\toprule
+名称 & 类别 \\
+\midrule
+高位防御 (high\_guard) & 格挡 \\
+低位防御 (low\_guard) & 格挡 \\
+分体防御 (split\_guard) & 格挡 \\
+内格挡 (parry\_in) & 格挡 \\
+外格挡 (parry\_out) & 格挡 \\
+内闪 (inside\_slip) & 闪避 \\
+外闪 (outside\_slip) & 闪避 \\
+下潜 (duck) & 闪避 \\
+后撤步 (step\_back) & 闪避 \\
+侧闪步 (side\_step) & 闪避 \\
+左旋身 (pivot\_left) & 闪避 \\
+右旋身 (pivot\_right) & 闪避 \\
+龟缩防御 (shell\_cover) & 防御姿态 \\
+缠抱 (clinch) & 防御姿态 \\
+支撑格挡 (frame) & 防御姿态 \\
+前臂格挡 (forearm\_block) & 格挡 \\
+胫骨格挡 (shin\_check) & 格挡 \\
+接腿摔 (catch\_kick) & 防御姿态 \\
+复位 (reposition) & 平衡恢复 \\
+恢复站姿 (reset\_stance) & 平衡恢复 \\
+微型修复 (micro\_repair) & 平衡恢复 \\
+紧急恢复 (emergency\_recovery) & 倒地反击 \\
+\bottomrule
+\end{longtable}
+
+\section{附录三：完整防御匹配表（摘录）}
+\begin{longtable}{l l r l c}
+\caption{各攻击在前三防守方状态下的最佳防守}\\
+\toprule
+攻击 & 防守方状态 & 排名 & 推荐防御 & 效用得分 \\
+\midrule
+后手直拳 & 空闲 & 1 & 高位防御 & 0.712 \\
+后手直拳 & 空闲 & 2 & 内闪 & 0.685 \\
+后手直拳 & 空闲 & 3 & 后撤步 & 0.654 \\
+下劈腿 & 空闲 & 1 & 高位防御 & 0.623 \\
+下劈腿 & 空闲 & 2 & 侧闪步 & 0.587 \\
+下劈腿 & 空闲 & 3 & 后撤步 & 0.561 \\
+前蹬腿 & 空闲 & 1 & 胫骨格挡 & 0.691 \\
+前蹬腿 & 空闲 & 2 & 接腿摔 & 0.672 \\
+前蹬腿 & 空闲 & 3 & 后撤步 & 0.633 \\
+\bottomrule
+\end{longtable}
+\textit{（完整表格包含13攻击×5状态×3推荐，共195行，此处仅作示意）}

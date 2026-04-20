@@ -1,0 +1,1523 @@
+{
+  "schema": "five_state_transition",
+  "states": {
+    "0": "Idle",
+    "1": "Guard",
+    "2": "MinorUnstable",
+    "3": "MajorUnstable",
+    "4": "Down"
+  },
+  "attack_count": 13,
+  "all_attacks_ranking_by_defender_state": {
+    "jab": {
+      "0": [
+        {
+          "rank": 1,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.425
+        },
+        {
+          "rank": 2,
+          "defense_id": "cross_block",
+          "defense_name_cn": "十字格挡",
+          "score": 0.367
+        },
+        {
+          "rank": 3,
+          "defense_id": "head_guard",
+          "defense_name_cn": "护头防御",
+          "score": 0.345
+        }
+      ],
+      "1": [
+        {
+          "rank": 1,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.425
+        },
+        {
+          "rank": 2,
+          "defense_id": "cross_block",
+          "defense_name_cn": "十字格挡",
+          "score": 0.367
+        },
+        {
+          "rank": 3,
+          "defense_id": "head_guard",
+          "defense_name_cn": "护头防御",
+          "score": 0.345
+        }
+      ],
+      "2": [
+        {
+          "rank": 1,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.425
+        },
+        {
+          "rank": 2,
+          "defense_id": "cross_block",
+          "defense_name_cn": "十字格挡",
+          "score": 0.367
+        },
+        {
+          "rank": 3,
+          "defense_id": "head_guard",
+          "defense_name_cn": "护头防御",
+          "score": 0.345
+        }
+      ],
+      "3": [
+        {
+          "rank": 1,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.425
+        },
+        {
+          "rank": 2,
+          "defense_id": "cross_block",
+          "defense_name_cn": "十字格挡",
+          "score": 0.367
+        },
+        {
+          "rank": 3,
+          "defense_id": "head_guard",
+          "defense_name_cn": "护头防御",
+          "score": 0.345
+        }
+      ],
+      "4": [
+        {
+          "rank": 1,
+          "defense_id": "ground_defense",
+          "defense_name_cn": "倒地防御",
+          "score": 0.094
+        },
+        {
+          "rank": 2,
+          "defense_id": "quick_getup",
+          "defense_name_cn": "快速起身",
+          "score": -0.1
+        }
+      ]
+    },
+    "cross": {
+      "0": [
+        {
+          "rank": 1,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.405
+        },
+        {
+          "rank": 2,
+          "defense_id": "cross_block",
+          "defense_name_cn": "十字格挡",
+          "score": 0.352
+        },
+        {
+          "rank": 3,
+          "defense_id": "side_sway",
+          "defense_name_cn": "左右侧闪",
+          "score": 0.329
+        }
+      ],
+      "1": [
+        {
+          "rank": 1,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.405
+        },
+        {
+          "rank": 2,
+          "defense_id": "cross_block",
+          "defense_name_cn": "十字格挡",
+          "score": 0.352
+        },
+        {
+          "rank": 3,
+          "defense_id": "side_sway",
+          "defense_name_cn": "左右侧闪",
+          "score": 0.329
+        }
+      ],
+      "2": [
+        {
+          "rank": 1,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.405
+        },
+        {
+          "rank": 2,
+          "defense_id": "cross_block",
+          "defense_name_cn": "十字格挡",
+          "score": 0.352
+        },
+        {
+          "rank": 3,
+          "defense_id": "side_sway",
+          "defense_name_cn": "左右侧闪",
+          "score": 0.329
+        }
+      ],
+      "3": [
+        {
+          "rank": 1,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.405
+        },
+        {
+          "rank": 2,
+          "defense_id": "cross_block",
+          "defense_name_cn": "十字格挡",
+          "score": 0.352
+        },
+        {
+          "rank": 3,
+          "defense_id": "side_sway",
+          "defense_name_cn": "左右侧闪",
+          "score": 0.329
+        }
+      ],
+      "4": [
+        {
+          "rank": 1,
+          "defense_id": "ground_defense",
+          "defense_name_cn": "倒地防御",
+          "score": 0.094
+        },
+        {
+          "rank": 2,
+          "defense_id": "quick_getup",
+          "defense_name_cn": "快速起身",
+          "score": -0.1
+        }
+      ]
+    },
+    "hook": {
+      "0": [
+        {
+          "rank": 1,
+          "defense_id": "duck_dodge",
+          "defense_name_cn": "下潜闪避",
+          "score": 0.366
+        },
+        {
+          "rank": 2,
+          "defense_id": "elbow_block",
+          "defense_name_cn": "肘挡",
+          "score": 0.347
+        },
+        {
+          "rank": 3,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.34
+        }
+      ],
+      "1": [
+        {
+          "rank": 1,
+          "defense_id": "duck_dodge",
+          "defense_name_cn": "下潜闪避",
+          "score": 0.366
+        },
+        {
+          "rank": 2,
+          "defense_id": "elbow_block",
+          "defense_name_cn": "肘挡",
+          "score": 0.347
+        },
+        {
+          "rank": 3,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.34
+        }
+      ],
+      "2": [
+        {
+          "rank": 1,
+          "defense_id": "duck_dodge",
+          "defense_name_cn": "下潜闪避",
+          "score": 0.366
+        },
+        {
+          "rank": 2,
+          "defense_id": "elbow_block",
+          "defense_name_cn": "肘挡",
+          "score": 0.347
+        },
+        {
+          "rank": 3,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.34
+        }
+      ],
+      "3": [
+        {
+          "rank": 1,
+          "defense_id": "duck_dodge",
+          "defense_name_cn": "下潜闪避",
+          "score": 0.366
+        },
+        {
+          "rank": 2,
+          "defense_id": "elbow_block",
+          "defense_name_cn": "肘挡",
+          "score": 0.347
+        },
+        {
+          "rank": 3,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.34
+        }
+      ],
+      "4": [
+        {
+          "rank": 1,
+          "defense_id": "ground_defense",
+          "defense_name_cn": "倒地防御",
+          "score": 0.094
+        },
+        {
+          "rank": 2,
+          "defense_id": "quick_getup",
+          "defense_name_cn": "快速起身",
+          "score": -0.1
+        }
+      ]
+    },
+    "uppercut": {
+      "0": [
+        {
+          "rank": 1,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense_id": "elbow_block",
+          "defense_name_cn": "肘挡",
+          "score": 0.322
+        },
+        {
+          "rank": 3,
+          "defense_id": "cross_block",
+          "defense_name_cn": "十字格挡",
+          "score": 0.302
+        }
+      ],
+      "1": [
+        {
+          "rank": 1,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense_id": "elbow_block",
+          "defense_name_cn": "肘挡",
+          "score": 0.322
+        },
+        {
+          "rank": 3,
+          "defense_id": "cross_block",
+          "defense_name_cn": "十字格挡",
+          "score": 0.302
+        }
+      ],
+      "2": [
+        {
+          "rank": 1,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense_id": "elbow_block",
+          "defense_name_cn": "肘挡",
+          "score": 0.322
+        },
+        {
+          "rank": 3,
+          "defense_id": "cross_block",
+          "defense_name_cn": "十字格挡",
+          "score": 0.302
+        }
+      ],
+      "3": [
+        {
+          "rank": 1,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense_id": "elbow_block",
+          "defense_name_cn": "肘挡",
+          "score": 0.322
+        },
+        {
+          "rank": 3,
+          "defense_id": "cross_block",
+          "defense_name_cn": "十字格挡",
+          "score": 0.302
+        }
+      ],
+      "4": [
+        {
+          "rank": 1,
+          "defense_id": "ground_defense",
+          "defense_name_cn": "倒地防御",
+          "score": 0.094
+        },
+        {
+          "rank": 2,
+          "defense_id": "quick_getup",
+          "defense_name_cn": "快速起身",
+          "score": -0.1
+        }
+      ]
+    },
+    "front_kick": {
+      "0": [
+        {
+          "rank": 1,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense_id": "back_step",
+          "defense_name_cn": "后撤步",
+          "score": 0.317
+        },
+        {
+          "rank": 3,
+          "defense_id": "low_parry",
+          "defense_name_cn": "下压格挡",
+          "score": 0.298
+        }
+      ],
+      "1": [
+        {
+          "rank": 1,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense_id": "back_step",
+          "defense_name_cn": "后撤步",
+          "score": 0.317
+        },
+        {
+          "rank": 3,
+          "defense_id": "low_parry",
+          "defense_name_cn": "下压格挡",
+          "score": 0.298
+        }
+      ],
+      "2": [
+        {
+          "rank": 1,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense_id": "back_step",
+          "defense_name_cn": "后撤步",
+          "score": 0.317
+        },
+        {
+          "rank": 3,
+          "defense_id": "low_parry",
+          "defense_name_cn": "下压格挡",
+          "score": 0.298
+        }
+      ],
+      "3": [
+        {
+          "rank": 1,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense_id": "back_step",
+          "defense_name_cn": "后撤步",
+          "score": 0.317
+        },
+        {
+          "rank": 3,
+          "defense_id": "low_parry",
+          "defense_name_cn": "下压格挡",
+          "score": 0.298
+        }
+      ],
+      "4": [
+        {
+          "rank": 1,
+          "defense_id": "ground_defense",
+          "defense_name_cn": "倒地防御",
+          "score": 0.094
+        },
+        {
+          "rank": 2,
+          "defense_id": "quick_getup",
+          "defense_name_cn": "快速起身",
+          "score": -0.1
+        }
+      ]
+    },
+    "roundhouse": {
+      "0": [
+        {
+          "rank": 1,
+          "defense_id": "spin_dodge",
+          "defense_name_cn": "转身闪避",
+          "score": 0.361
+        },
+        {
+          "rank": 2,
+          "defense_id": "duck_dodge",
+          "defense_name_cn": "下潜闪避",
+          "score": 0.341
+        },
+        {
+          "rank": 3,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.34
+        }
+      ],
+      "1": [
+        {
+          "rank": 1,
+          "defense_id": "spin_dodge",
+          "defense_name_cn": "转身闪避",
+          "score": 0.361
+        },
+        {
+          "rank": 2,
+          "defense_id": "duck_dodge",
+          "defense_name_cn": "下潜闪避",
+          "score": 0.341
+        },
+        {
+          "rank": 3,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.34
+        }
+      ],
+      "2": [
+        {
+          "rank": 1,
+          "defense_id": "spin_dodge",
+          "defense_name_cn": "转身闪避",
+          "score": 0.361
+        },
+        {
+          "rank": 2,
+          "defense_id": "duck_dodge",
+          "defense_name_cn": "下潜闪避",
+          "score": 0.341
+        },
+        {
+          "rank": 3,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.34
+        }
+      ],
+      "3": [
+        {
+          "rank": 1,
+          "defense_id": "spin_dodge",
+          "defense_name_cn": "转身闪避",
+          "score": 0.361
+        },
+        {
+          "rank": 2,
+          "defense_id": "duck_dodge",
+          "defense_name_cn": "下潜闪避",
+          "score": 0.341
+        },
+        {
+          "rank": 3,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.34
+        }
+      ],
+      "4": [
+        {
+          "rank": 1,
+          "defense_id": "ground_defense",
+          "defense_name_cn": "倒地防御",
+          "score": 0.094
+        },
+        {
+          "rank": 2,
+          "defense_id": "quick_getup",
+          "defense_name_cn": "快速起身",
+          "score": -0.1
+        }
+      ]
+    },
+    "axe_kick": {
+      "0": [
+        {
+          "rank": 1,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense_id": "spin_dodge",
+          "defense_name_cn": "转身闪避",
+          "score": 0.296
+        },
+        {
+          "rank": 3,
+          "defense_id": "head_guard",
+          "defense_name_cn": "护头防御",
+          "score": 0.295
+        }
+      ],
+      "1": [
+        {
+          "rank": 1,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense_id": "spin_dodge",
+          "defense_name_cn": "转身闪避",
+          "score": 0.296
+        },
+        {
+          "rank": 3,
+          "defense_id": "head_guard",
+          "defense_name_cn": "护头防御",
+          "score": 0.295
+        }
+      ],
+      "2": [
+        {
+          "rank": 1,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense_id": "spin_dodge",
+          "defense_name_cn": "转身闪避",
+          "score": 0.296
+        },
+        {
+          "rank": 3,
+          "defense_id": "head_guard",
+          "defense_name_cn": "护头防御",
+          "score": 0.295
+        }
+      ],
+      "3": [
+        {
+          "rank": 1,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense_id": "spin_dodge",
+          "defense_name_cn": "转身闪避",
+          "score": 0.296
+        },
+        {
+          "rank": 3,
+          "defense_id": "head_guard",
+          "defense_name_cn": "护头防御",
+          "score": 0.295
+        }
+      ],
+      "4": [
+        {
+          "rank": 1,
+          "defense_id": "ground_defense",
+          "defense_name_cn": "倒地防御",
+          "score": 0.094
+        },
+        {
+          "rank": 2,
+          "defense_id": "quick_getup",
+          "defense_name_cn": "快速起身",
+          "score": -0.1
+        }
+      ]
+    },
+    "side_kick": {
+      "0": [
+        {
+          "rank": 1,
+          "defense_id": "spin_dodge",
+          "defense_name_cn": "转身闪避",
+          "score": 0.336
+        },
+        {
+          "rank": 2,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.315
+        },
+        {
+          "rank": 3,
+          "defense_id": "head_guard",
+          "defense_name_cn": "护头防御",
+          "score": 0.295
+        }
+      ],
+      "1": [
+        {
+          "rank": 1,
+          "defense_id": "spin_dodge",
+          "defense_name_cn": "转身闪避",
+          "score": 0.336
+        },
+        {
+          "rank": 2,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.315
+        },
+        {
+          "rank": 3,
+          "defense_id": "head_guard",
+          "defense_name_cn": "护头防御",
+          "score": 0.295
+        }
+      ],
+      "2": [
+        {
+          "rank": 1,
+          "defense_id": "spin_dodge",
+          "defense_name_cn": "转身闪避",
+          "score": 0.336
+        },
+        {
+          "rank": 2,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.315
+        },
+        {
+          "rank": 3,
+          "defense_id": "head_guard",
+          "defense_name_cn": "护头防御",
+          "score": 0.295
+        }
+      ],
+      "3": [
+        {
+          "rank": 1,
+          "defense_id": "spin_dodge",
+          "defense_name_cn": "转身闪避",
+          "score": 0.336
+        },
+        {
+          "rank": 2,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.315
+        },
+        {
+          "rank": 3,
+          "defense_id": "head_guard",
+          "defense_name_cn": "护头防御",
+          "score": 0.295
+        }
+      ],
+      "4": [
+        {
+          "rank": 1,
+          "defense_id": "ground_defense",
+          "defense_name_cn": "倒地防御",
+          "score": 0.094
+        },
+        {
+          "rank": 2,
+          "defense_id": "quick_getup",
+          "defense_name_cn": "快速起身",
+          "score": -0.1
+        }
+      ]
+    },
+    "knee_strike": {
+      "0": [
+        {
+          "rank": 1,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense_id": "spin_dodge",
+          "defense_name_cn": "转身闪避",
+          "score": 0.296
+        },
+        {
+          "rank": 3,
+          "defense_id": "head_guard",
+          "defense_name_cn": "护头防御",
+          "score": 0.295
+        }
+      ],
+      "1": [
+        {
+          "rank": 1,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense_id": "spin_dodge",
+          "defense_name_cn": "转身闪避",
+          "score": 0.296
+        },
+        {
+          "rank": 3,
+          "defense_id": "head_guard",
+          "defense_name_cn": "护头防御",
+          "score": 0.295
+        }
+      ],
+      "2": [
+        {
+          "rank": 1,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense_id": "spin_dodge",
+          "defense_name_cn": "转身闪避",
+          "score": 0.296
+        },
+        {
+          "rank": 3,
+          "defense_id": "head_guard",
+          "defense_name_cn": "护头防御",
+          "score": 0.295
+        }
+      ],
+      "3": [
+        {
+          "rank": 1,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense_id": "spin_dodge",
+          "defense_name_cn": "转身闪避",
+          "score": 0.296
+        },
+        {
+          "rank": 3,
+          "defense_id": "head_guard",
+          "defense_name_cn": "护头防御",
+          "score": 0.295
+        }
+      ],
+      "4": [
+        {
+          "rank": 1,
+          "defense_id": "ground_defense",
+          "defense_name_cn": "倒地防御",
+          "score": 0.094
+        },
+        {
+          "rank": 2,
+          "defense_id": "quick_getup",
+          "defense_name_cn": "快速起身",
+          "score": -0.1
+        }
+      ]
+    },
+    "elbow": {
+      "0": [
+        {
+          "rank": 1,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense_id": "elbow_block",
+          "defense_name_cn": "肘挡",
+          "score": 0.297
+        },
+        {
+          "rank": 3,
+          "defense_id": "spin_dodge",
+          "defense_name_cn": "转身闪避",
+          "score": 0.296
+        }
+      ],
+      "1": [
+        {
+          "rank": 1,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense_id": "elbow_block",
+          "defense_name_cn": "肘挡",
+          "score": 0.297
+        },
+        {
+          "rank": 3,
+          "defense_id": "spin_dodge",
+          "defense_name_cn": "转身闪避",
+          "score": 0.296
+        }
+      ],
+      "2": [
+        {
+          "rank": 1,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense_id": "elbow_block",
+          "defense_name_cn": "肘挡",
+          "score": 0.297
+        },
+        {
+          "rank": 3,
+          "defense_id": "spin_dodge",
+          "defense_name_cn": "转身闪避",
+          "score": 0.296
+        }
+      ],
+      "3": [
+        {
+          "rank": 1,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense_id": "elbow_block",
+          "defense_name_cn": "肘挡",
+          "score": 0.297
+        },
+        {
+          "rank": 3,
+          "defense_id": "spin_dodge",
+          "defense_name_cn": "转身闪避",
+          "score": 0.296
+        }
+      ],
+      "4": [
+        {
+          "rank": 1,
+          "defense_id": "ground_defense",
+          "defense_name_cn": "倒地防御",
+          "score": 0.094
+        },
+        {
+          "rank": 2,
+          "defense_id": "quick_getup",
+          "defense_name_cn": "快速起身",
+          "score": -0.1
+        }
+      ]
+    },
+    "low_kick": {
+      "0": [
+        {
+          "rank": 1,
+          "defense_id": "low_parry",
+          "defense_name_cn": "下压格挡",
+          "score": 0.398
+        },
+        {
+          "rank": 2,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.34
+        },
+        {
+          "rank": 3,
+          "defense_id": "crouch_guard",
+          "defense_name_cn": "沉身防御",
+          "score": 0.318
+        }
+      ],
+      "1": [
+        {
+          "rank": 1,
+          "defense_id": "low_parry",
+          "defense_name_cn": "下压格挡",
+          "score": 0.398
+        },
+        {
+          "rank": 2,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.34
+        },
+        {
+          "rank": 3,
+          "defense_id": "crouch_guard",
+          "defense_name_cn": "沉身防御",
+          "score": 0.318
+        }
+      ],
+      "2": [
+        {
+          "rank": 1,
+          "defense_id": "low_parry",
+          "defense_name_cn": "下压格挡",
+          "score": 0.398
+        },
+        {
+          "rank": 2,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.34
+        },
+        {
+          "rank": 3,
+          "defense_id": "crouch_guard",
+          "defense_name_cn": "沉身防御",
+          "score": 0.318
+        }
+      ],
+      "3": [
+        {
+          "rank": 1,
+          "defense_id": "low_parry",
+          "defense_name_cn": "下压格挡",
+          "score": 0.398
+        },
+        {
+          "rank": 2,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.34
+        },
+        {
+          "rank": 3,
+          "defense_id": "crouch_guard",
+          "defense_name_cn": "沉身防御",
+          "score": 0.318
+        }
+      ],
+      "4": [
+        {
+          "rank": 1,
+          "defense_id": "ground_defense",
+          "defense_name_cn": "倒地防御",
+          "score": 0.094
+        },
+        {
+          "rank": 2,
+          "defense_id": "quick_getup",
+          "defense_name_cn": "快速起身",
+          "score": -0.1
+        }
+      ]
+    },
+    "spinning_back_kick": {
+      "0": [
+        {
+          "rank": 1,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense_id": "spin_dodge",
+          "defense_name_cn": "转身闪避",
+          "score": 0.311
+        },
+        {
+          "rank": 3,
+          "defense_id": "head_guard",
+          "defense_name_cn": "护头防御",
+          "score": 0.295
+        }
+      ],
+      "1": [
+        {
+          "rank": 1,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense_id": "spin_dodge",
+          "defense_name_cn": "转身闪避",
+          "score": 0.311
+        },
+        {
+          "rank": 3,
+          "defense_id": "head_guard",
+          "defense_name_cn": "护头防御",
+          "score": 0.295
+        }
+      ],
+      "2": [
+        {
+          "rank": 1,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense_id": "spin_dodge",
+          "defense_name_cn": "转身闪避",
+          "score": 0.311
+        },
+        {
+          "rank": 3,
+          "defense_id": "head_guard",
+          "defense_name_cn": "护头防御",
+          "score": 0.295
+        }
+      ],
+      "3": [
+        {
+          "rank": 1,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense_id": "spin_dodge",
+          "defense_name_cn": "转身闪避",
+          "score": 0.311
+        },
+        {
+          "rank": 3,
+          "defense_id": "head_guard",
+          "defense_name_cn": "护头防御",
+          "score": 0.295
+        }
+      ],
+      "4": [
+        {
+          "rank": 1,
+          "defense_id": "ground_defense",
+          "defense_name_cn": "倒地防御",
+          "score": 0.094
+        },
+        {
+          "rank": 2,
+          "defense_id": "quick_getup",
+          "defense_name_cn": "快速起身",
+          "score": -0.1
+        }
+      ]
+    },
+    "flying_knee": {
+      "0": [
+        {
+          "rank": 1,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense_id": "spin_dodge",
+          "defense_name_cn": "转身闪避",
+          "score": 0.296
+        },
+        {
+          "rank": 3,
+          "defense_id": "head_guard",
+          "defense_name_cn": "护头防御",
+          "score": 0.295
+        }
+      ],
+      "1": [
+        {
+          "rank": 1,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense_id": "spin_dodge",
+          "defense_name_cn": "转身闪避",
+          "score": 0.296
+        },
+        {
+          "rank": 3,
+          "defense_id": "head_guard",
+          "defense_name_cn": "护头防御",
+          "score": 0.295
+        }
+      ],
+      "2": [
+        {
+          "rank": 1,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense_id": "spin_dodge",
+          "defense_name_cn": "转身闪避",
+          "score": 0.296
+        },
+        {
+          "rank": 3,
+          "defense_id": "head_guard",
+          "defense_name_cn": "护头防御",
+          "score": 0.295
+        }
+      ],
+      "3": [
+        {
+          "rank": 1,
+          "defense_id": "parry_single",
+          "defense_name_cn": "单手拍挡",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense_id": "spin_dodge",
+          "defense_name_cn": "转身闪避",
+          "score": 0.296
+        },
+        {
+          "rank": 3,
+          "defense_id": "head_guard",
+          "defense_name_cn": "护头防御",
+          "score": 0.295
+        }
+      ],
+      "4": [
+        {
+          "rank": 1,
+          "defense_id": "ground_defense",
+          "defense_name_cn": "倒地防御",
+          "score": 0.094
+        },
+        {
+          "rank": 2,
+          "defense_id": "quick_getup",
+          "defense_name_cn": "快速起身",
+          "score": -0.1
+        }
+      ]
+    }
+  },
+  "idle_state_top3_defenses": {
+    "jab": [
+      {
+        "rank": 1,
+        "defense_id": "parry_single",
+        "defense_name_cn": "单手拍挡",
+        "score": 0.425
+      },
+      {
+        "rank": 2,
+        "defense_id": "cross_block",
+        "defense_name_cn": "十字格挡",
+        "score": 0.367
+      },
+      {
+        "rank": 3,
+        "defense_id": "head_guard",
+        "defense_name_cn": "护头防御",
+        "score": 0.345
+      }
+    ],
+    "cross": [
+      {
+        "rank": 1,
+        "defense_id": "parry_single",
+        "defense_name_cn": "单手拍挡",
+        "score": 0.405
+      },
+      {
+        "rank": 2,
+        "defense_id": "cross_block",
+        "defense_name_cn": "十字格挡",
+        "score": 0.352
+      },
+      {
+        "rank": 3,
+        "defense_id": "side_sway",
+        "defense_name_cn": "左右侧闪",
+        "score": 0.329
+      }
+    ],
+    "hook": [
+      {
+        "rank": 1,
+        "defense_id": "duck_dodge",
+        "defense_name_cn": "下潜闪避",
+        "score": 0.366
+      },
+      {
+        "rank": 2,
+        "defense_id": "elbow_block",
+        "defense_name_cn": "肘挡",
+        "score": 0.347
+      },
+      {
+        "rank": 3,
+        "defense_id": "parry_single",
+        "defense_name_cn": "单手拍挡",
+        "score": 0.34
+      }
+    ],
+    "uppercut": [
+      {
+        "rank": 1,
+        "defense_id": "parry_single",
+        "defense_name_cn": "单手拍挡",
+        "score": 0.34
+      },
+      {
+        "rank": 2,
+        "defense_id": "elbow_block",
+        "defense_name_cn": "肘挡",
+        "score": 0.322
+      },
+      {
+        "rank": 3,
+        "defense_id": "cross_block",
+        "defense_name_cn": "十字格挡",
+        "score": 0.302
+      }
+    ],
+    "front_kick": [
+      {
+        "rank": 1,
+        "defense_id": "parry_single",
+        "defense_name_cn": "单手拍挡",
+        "score": 0.34
+      },
+      {
+        "rank": 2,
+        "defense_id": "back_step",
+        "defense_name_cn": "后撤步",
+        "score": 0.317
+      },
+      {
+        "rank": 3,
+        "defense_id": "low_parry",
+        "defense_name_cn": "下压格挡",
+        "score": 0.298
+      }
+    ],
+    "roundhouse": [
+      {
+        "rank": 1,
+        "defense_id": "spin_dodge",
+        "defense_name_cn": "转身闪避",
+        "score": 0.361
+      },
+      {
+        "rank": 2,
+        "defense_id": "duck_dodge",
+        "defense_name_cn": "下潜闪避",
+        "score": 0.341
+      },
+      {
+        "rank": 3,
+        "defense_id": "parry_single",
+        "defense_name_cn": "单手拍挡",
+        "score": 0.34
+      }
+    ],
+    "axe_kick": [
+      {
+        "rank": 1,
+        "defense_id": "parry_single",
+        "defense_name_cn": "单手拍挡",
+        "score": 0.34
+      },
+      {
+        "rank": 2,
+        "defense_id": "spin_dodge",
+        "defense_name_cn": "转身闪避",
+        "score": 0.296
+      },
+      {
+        "rank": 3,
+        "defense_id": "head_guard",
+        "defense_name_cn": "护头防御",
+        "score": 0.295
+      }
+    ],
+    "side_kick": [
+      {
+        "rank": 1,
+        "defense_id": "spin_dodge",
+        "defense_name_cn": "转身闪避",
+        "score": 0.336
+      },
+      {
+        "rank": 2,
+        "defense_id": "parry_single",
+        "defense_name_cn": "单手拍挡",
+        "score": 0.315
+      },
+      {
+        "rank": 3,
+        "defense_id": "head_guard",
+        "defense_name_cn": "护头防御",
+        "score": 0.295
+      }
+    ],
+    "knee_strike": [
+      {
+        "rank": 1,
+        "defense_id": "parry_single",
+        "defense_name_cn": "单手拍挡",
+        "score": 0.34
+      },
+      {
+        "rank": 2,
+        "defense_id": "spin_dodge",
+        "defense_name_cn": "转身闪避",
+        "score": 0.296
+      },
+      {
+        "rank": 3,
+        "defense_id": "head_guard",
+        "defense_name_cn": "护头防御",
+        "score": 0.295
+      }
+    ],
+    "elbow": [
+      {
+        "rank": 1,
+        "defense_id": "parry_single",
+        "defense_name_cn": "单手拍挡",
+        "score": 0.34
+      },
+      {
+        "rank": 2,
+        "defense_id": "elbow_block",
+        "defense_name_cn": "肘挡",
+        "score": 0.297
+      },
+      {
+        "rank": 3,
+        "defense_id": "spin_dodge",
+        "defense_name_cn": "转身闪避",
+        "score": 0.296
+      }
+    ],
+    "low_kick": [
+      {
+        "rank": 1,
+        "defense_id": "low_parry",
+        "defense_name_cn": "下压格挡",
+        "score": 0.398
+      },
+      {
+        "rank": 2,
+        "defense_id": "parry_single",
+        "defense_name_cn": "单手拍挡",
+        "score": 0.34
+      },
+      {
+        "rank": 3,
+        "defense_id": "crouch_guard",
+        "defense_name_cn": "沉身防御",
+        "score": 0.318
+      }
+    ],
+    "spinning_back_kick": [
+      {
+        "rank": 1,
+        "defense_id": "parry_single",
+        "defense_name_cn": "单手拍挡",
+        "score": 0.34
+      },
+      {
+        "rank": 2,
+        "defense_id": "spin_dodge",
+        "defense_name_cn": "转身闪避",
+        "score": 0.311
+      },
+      {
+        "rank": 3,
+        "defense_id": "head_guard",
+        "defense_name_cn": "护头防御",
+        "score": 0.295
+      }
+    ],
+    "flying_knee": [
+      {
+        "rank": 1,
+        "defense_id": "parry_single",
+        "defense_name_cn": "单手拍挡",
+        "score": 0.34
+      },
+      {
+        "rank": 2,
+        "defense_id": "spin_dodge",
+        "defense_name_cn": "转身闪避",
+        "score": 0.296
+      },
+      {
+        "rank": 3,
+        "defense_id": "head_guard",
+        "defense_name_cn": "护头防御",
+        "score": 0.295
+      }
+    ]
+  }
+}

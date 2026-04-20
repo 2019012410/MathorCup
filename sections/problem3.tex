@@ -1,0 +1,42 @@
+\section{问题三：单场竞技最优策略模型}
+\subsection{MDP建模}
+将单场对抗建模为有限时域MDP。状态为双方联合状态 $(s, t)$，动作为己方攻击或防御 $a$。对手策略假设为已知的随机策略 $\pi_{\text{opp}}$。转移概率由反冲表、正冲表及防御参数综合计算。奖励函数定义为：
+\[
+R(s,t,a) = \Delta_{\text{harm}}(t,a) - \lambda \cdot \mathbf{1}_{\text{self\_unstab}},
+\]
+即追求高伤害的同时惩罚自身进入非稳定状态。通过调节 $\lambda$ 可在激进（$\lambda$小）与保守（$\lambda$大）之间连续变化。最优策略即为求解以下贝尔曼方程：
+\[
+V(s,t) = \max_{a} \sum_{a_{\text{opp}}} \pi_{\text{opp}}(a_{\text{opp}} \mid t) \sum_{s',t'} P(s',t' \mid s,t, a, a_{\text{opp}}) \big[ R + \gamma V(s',t') \big].
+\]
+
+\subsection{价值迭代伪代码}
+\begin{algorithm}[H]
+\caption{单人最优策略价值迭代}
+\label{alg:mdp_vi}
+\begin{algorithmic}[1]
+\Require 转移模型 $P$，对手策略 $\pi_{\text{opp}}$，折扣 $\gamma$，收敛阈值 $\epsilon$
+\Ensure 最优价值函数 $V$ 及策略 $\pi$
+\State 初始化 $V(s,t) \gets 0$ 对所有 $(s,t)$
+\Repeat
+    \State $\Delta \gets 0$
+    \For{每个状态 $(s,t)$}
+        \State $v \gets V(s,t)$
+        \State $V(s,t) \gets \max_{a} \sum_{a_{\text{opp}}} \pi_{\text{opp}}(a_{\text{opp}} \mid t) \sum_{s',t'} P(\cdot) [ R + \gamma V(s',t') ]$
+        \State $\Delta \gets \max(\Delta, |v - V(s,t)|)$
+    \EndFor
+\Until{$\Delta < \epsilon$}
+\For{每个 $(s,t)$}
+    \State $\pi(s,t) \gets \arg\max_{a} \ldots$
+\EndFor
+\State \Return $V, \pi$
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{最佳作战决策方案}
+通过调节 $\lambda$ 获得激进与保守策略的帕累托前沿，选取综合胜率最高的折中策略。
+本节结果由 \texttt{Experiment/problem3\_experiment.py} 读取 \texttt{random\_tables} 中的随机参数后，通过有限时域价值迭代自动得到（结果写入 \texttt{Experiment/results/problem3\_results.json}）。
+\IfFileExists{Experiment/results/problem3_conclusion.tex}{
+\input{Experiment/results/problem3_conclusion.tex}
+}{
+实验结论由脚本 \texttt{Experiment/problem3\_experiment.py} 动态生成；请先运行实验以生成 \texttt{Experiment/results/problem3\_conclusion.tex}。
+}

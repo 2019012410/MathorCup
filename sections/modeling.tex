@@ -1,0 +1,108 @@
+\section{数学建模部分}
+\subsection{五状态定义与自动推断规则}
+设机器人状态空间为 $S=\{0,1,2,3,4\}$，分别对应：空闲、防御、轻微失衡、严重失衡、倒地。为消除手工标注的主观性，本文从仿真器每帧提取以下物理特征并定义确定性分类规则：
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+变量 & 描述 \\
+\midrule
+\texttt{root\_vel} & 根节点线速度大小 (m/s) \\
+\texttt{root\_ang\_vel} & 根节点角速度大小 (rad/s) \\
+\texttt{torso\_inclination} & 躯干上方向与世界Z轴夹角 (°) \\
+\texttt{contact\_ground} & 双脚是否同时触地 \\
+\texttt{arms\_raised} & 手臂关节角是否处于防御范围 \\
+\texttt{torso\_ground\_contact} & 躯干或头部是否触地 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+状态推断决策树如下（阈值基于PM01机器人标定）：
+\begin{align*}
+\mathrm{state} =
+\begin{cases}
+4\ (\text{倒地}), & \text{若 } \texttt{torso\_ground\_contact} \lor \texttt{torso\_inclination} > 60^\circ,\\
+3\ (\text{严重失衡}), & \text{若 } \texttt{torso\_inclination} > 30^\circ \lor \texttt{root\_ang\_vel} > 2.0 \\
+& \quad\lor \neg\texttt{contact\_ground},\\
+2\ (\text{轻微失衡}), & \text{若 } \texttt{torso\_inclination} > 10^\circ \lor \texttt{root\_vel} > 0.5 \\
+& \quad\lor \texttt{root\_ang\_vel} > 1.0,\\
+1\ (\text{防御}), & \text{若 } \texttt{arms\_raised} \land \texttt{root\_vel} < 0.2 \land \texttt{root\_ang\_vel} < 0.5,\\
+0\ (\text{空闲}), & \text{其他情况}.
+\end{cases}
+\end{align*}
+
+\subsection{反冲表与正冲表的严格定义}
+\textbf{反冲表}（Recoil Table）记录攻击动作完成后自身状态的转移概率：
+\[
+T_{\text{self}}(s' \mid s_0, a) = \mathbb{P}(\text{自身终态} = s' \mid \text{初态} = s_0, \text{动作} = a).
+\]
+\textbf{正冲表}（Opponent Effect Table）记录对手在被命中瞬间处于状态 $t$ 时，被攻击 $a$ 命中后变为状态 $t'$ 的概率：
+\[
+T_{\text{opp}}^{\text{hit}}(t' \mid t, a) = \mathbb{P}(\text{对手终态} = t' \mid \text{命中时对手状态} = t, \text{动作} = a, \text{命中}).
+\]
+此外定义基础命中率 $p_{\text{hit}}(a \mid t)$ 及伤害权重 $w(t \to t')$（例如 $w(0\to4)=4.0$，$w(0\to3)=3.0$）。
+
+攻击 $a$ 对状态为 $t$ 的对手的期望破坏值：
+\[
+D(a \mid t) = p_{\text{hit}}(a \mid t) \sum_{t'} T_{\text{opp}}^{\text{hit}}(t' \mid t, a) \cdot w(t \to t').
+\]
+自身稳定性代价：
+\[
+U(a) = \sum_{s' \in \{2,3,4\}} T_{\text{self}}(s' \mid \text{Idle}, a).
+\]
+综合效用：
+\[
+V(a) = \alpha \cdot \mathbb{E}_{t}[D(a \mid t)] - \beta \cdot U(a),
+\]
+其中 $\alpha,\beta$ 为权重系数，$\mathbb{E}_{t}$ 表示对常见对手状态分布的期望。
+
+\subsection{基于CLoSD仿真的表格生成算法}
+\paragraph{反冲表采集（自身转移）}
+对于每个攻击动作 $a$，在无对手干扰下从空闲状态执行 $N=10,000$ 次，记录动作结束时的五状态分类，归一化后即得 $T_{\text{self}}(\cdot \mid \text{Idle}, a)$。
+
+\paragraph{正冲表采集（对手效应）——混合仿真方法}
+为准确模拟对手被命中时的瞬态，同时避免引入经验系数，采用以下混合策略：
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{对手初始状态采样}：对手被命中时可能正处于自身攻击的后摇阶段。我们从\textbf{反冲表}中采样其当前状态。若战术背景表明对手处于主动防御姿态，则强制设为 Guard (1)。
+    \item \textbf{非 Guard 状态 (0,2,3,4)}：配置一个与攻击方相同型号的\textbf{静态机器人}，通过初始倾斜角、速度等物理量使其匹配采样到的状态轮廓。强制攻击命中该静态机器人，仿真至稳定后记录最终状态。
+    \item \textbf{Guard 状态 (1)}：静态机器人难以复现主动防御的动态。因此改用仿真环境中的\textbf{沙袋目标物体}，并将其初始配置映射为\textbf{轻微失衡 (MinorUnstable)} 轮廓（倾斜 $10^\circ$–$30^\circ$ 或速度 $0.5$–$1.5$ m/s）。攻击命中沙袋后，根据沙袋最终状态（直立/摇摆/严重摇摆/倒地）反向映射回机器人五状态。
+\end{enumerate}
+此方法确保正冲表完全由物理引擎驱动，无任何人工调节的“减轻系数”。
+
+以下伪代码描述了完整的表格构建流程。
+
+\begin{algorithm}[H]
+\caption{构建反冲表与正冲表（基于CLoSD仿真）}
+\label{alg:build_tables}
+\begin{algorithmic}[1]
+\Require 攻击动作列表 $\mathcal{A}_{\text{atk}}$，状态空间 $S$，仿真次数 $N$
+\Ensure 反冲表 $T_{\text{self}}$，正冲表 $T_{\text{opp}}^{\text{hit}}$
+\For{每个攻击 $a \in \mathcal{A}_{\text{atk}}$}
+    \State \textbf{// 1. 反冲表：自身转移}
+    \State 初始化计数器 $C_{\text{self}}[s'] \gets 0$ 对 $s' \in S$
+    \For{$i=1$ 到 $N$}
+        \State 机器人从空闲状态执行 $a$，无对手干扰
+        \State 记录动作结束时的五状态 $s_{\text{final}}$
+        \State $C_{\text{self}}[s_{\text{final}}] \gets C_{\text{self}}[s_{\text{final}}] + 1$
+    \EndFor
+    \State 归一化：$T_{\text{self}}(s' \mid \text{Idle}, a) \gets C_{\text{self}}[s'] / N$
+    \State \textbf{// 2. 正冲表：对手效应（混合仿真）}
+    \For{每个对手状态 $t \in S$}
+        \State 初始化计数器 $C_{\text{opp}}[t'] \gets 0$ 对 $t' \in S$
+        \For{$i=1$ 到 $N$}
+            \If{$t = 1$} \Comment{Guard 状态：使用沙袋映射}
+                \State 配置沙袋为 MinorUnstable 轮廓
+                \State 强制攻击 $a$ 命中沙袋
+                \State 仿真至稳定，将沙袋终态逆向映射为机器人状态 $t_{\text{final}}$
+            \Else \Comment{非 Guard 状态：使用静态机器人}
+                \State 配置静态机器人匹配状态 $t$ 的物理轮廓
+                \State 强制攻击 $a$ 命中静态机器人
+                \State 仿真至稳定，直接分类机器人状态 $t_{\text{final}}$
+            \EndIf
+            \State $C_{\text{opp}}[t_{\text{final}}] \gets C_{\text{opp}}[t_{\text{final}}] + 1$
+        \EndFor
+        \State 归一化：$T_{\text{opp}}^{\text{hit}}(t' \mid t, a) \gets C_{\text{opp}}[t'] / N$
+    \EndFor
+\EndFor
+\State \Return $T_{\text{self}}, T_{\text{opp}}^{\text{hit}}$
+\end{algorithmic}
+\end{algorithm}

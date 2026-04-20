@@ -1,0 +1,40 @@
+\section{问题二：最佳防守动作匹配}
+\subsection{防守评估模型}
+对于防御动作 $d\in\mathcal{A}_{\text{def}}$ 和攻击 $a$，定义以下指标（均通过运动重叠分析与仿真获得）：
+\begin{itemize}
+    \item $p_{\text{block}}(a,d)$：完全格挡概率。
+    \item $p_{\text{mitigate}}(a,d)$：伤害减轻一级的概率。
+    \item $p_{\text{counter}}(a,d)$：进入反击窗口的概率。反击窗口定义为防守后自身处于空闲或防御状态，且对手处于攻击后摇（可通过反冲表采样）的时刻。
+    \item $c_{\text{self}}(d)$：执行防御的体力/稳定性代价。
+\end{itemize}
+防御效用函数为：
+\[
+U_{\text{def}}(d \mid a) = w_1 \cdot p_{\text{block}} + w_2 \cdot p_{\text{mitigate}} + w_3 \cdot p_{\text{counter}} - w_4 \cdot c_{\text{self}}.
+\]
+
+\subsection{防御匹配算法伪代码}
+\begin{algorithm}[H]
+\caption{最佳防御匹配（读取预计算防御表）}
+\label{alg:defense_match}
+\begin{algorithmic}[1]
+\Require 攻击集 $\mathcal{A}_{\text{atk}}$，防御集 $\mathcal{A}_{\text{def}}$，防守方初始状态 $s$，预计算防御参数库
+\Ensure 匹配表 $M(a,s) = $ 最优防御列表
+\State 从预仿真库加载防御参数：$p_{\text{block}}, p_{\text{mitigate}}, p_{\text{counter}}, c_{\text{self}}$
+\For{每个攻击 $a \in \mathcal{A}_{\text{atk}}$}
+    \For{每个合法防御 $d \in \mathcal{A}_{\text{def}}(s)$}
+        \State 计算 $U_{\text{def}}(d \mid a)$
+        \State \textbf{// 反击窗口评估：综合自身平稳效果与对手后摇状态}
+        \State 从反冲表采样攻击者后摇状态 $s_{\text{opp}} \sim T_{\text{self}}(\cdot \mid \text{Idle}, a)$
+        \State 若 $s_{\text{opp}} \in \{2,3,4\}$ 且防守后自身状态 $\in \{0,1\}$，则反击概率加权计入 $p_{\text{counter}}$
+    \EndFor
+    \State 按 $U_{\text{def}}$ 降序排序防御，取前 $K$ 个作为推荐
+\EndFor
+\State \Return $M$
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{最佳防御匹配结果}
+所有攻击在防守方处于空闲状态时的前三名防御动作如下表所示。
+\immediate\write18{E:/anaconda3/envs/Desktop/python.exe Experiment/problem2_experiment.py > nul}
+\input{Experiment/results/problem2_all_attacks_table.tex}
+完整13种攻击的匹配表由程序输出于 \texttt{Experiment/results/problem2\_results.json}，附录可据此自动整理。
