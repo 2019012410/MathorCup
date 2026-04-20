@@ -1,0 +1,380 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.integrate import solve_ivp
+import warnings
+from matplotlib.collections import LineCollection
+from matplotlib.lines import Line2D
+from matplotlib import font_manager
+
+
+def plot_lipm_three_cases(seed=2026, save_path=None):
+    """
+    三维 LIPM 示例：
+    1) 被回复解拉回界内
+    2) 直接冲出界外并触发 z 轴指数下落
+    3) 初期未冲出，但回复项发散后冲出并触发 z 轴指数下落
+
+    水平面采用不同频率回复解的截断随机级数组合：
+    x(t)=sum(u_i), y(t)=sum(v_i)
+
+    每个模态满足：
+    u_i'' + 2*c_i*u_i' + w_i^2*u_i = 0
+    v_i'' + 2*c_i*v_i' + w_i^2*v_i = 0
+
+    若越界触发后（sqrt(x^2+y^2)>R），进入边界层：
+    z' = -gamma*z，直到 z<=z_stop 时轨迹终止。
+    """
+    rng = np.random.default_rng(seed)
+
+    # Configure CJK-capable fonts to avoid Chinese title rendering issues.
+    available_fonts = {f.name for f in font_manager.fontManager.ttflist}
+    preferred_fonts = [
+        "Microsoft YaHei",
+        "SimHei",
+        "Noto Sans CJK SC",
+        "Source Han Sans SC",
+        "Arial Unicode MS",
+    ]
+    selected_fonts = [name for name in preferred_fonts if name in available_fonts]
+    if selected_fonts:
+        plt.rcParams["font.sans-serif"] = selected_fonts + ["DejaVu Sans"]
+    else:
+        warnings.warn(
+            "No common Chinese font detected; Chinese titles may not render correctly.",
+            RuntimeWarning,
+        )
+    plt.rcParams["axes.unicode_minus"] = False
+
+    # ----- 基本参数 -----
+    n_modes = 6
+    omegas = rng.uniform(0.9, 3.2, size=n_modes)
+    # 保留两组接近频率，增强拍频可见性
+    omegas[0] = 1.65
+    omegas[1] = 1.95
+
+    c_base = np.full(n_modes, 0.28)  # 基础能量吸收（阻尼）
+
+    r_bound = 2.0
+    gamma = 4.8
+    z0 = 0.35
+    z_stop = 0.015
+
+    # 同一初始位置，符合“相同位置质心”
+    x0, y0 = 0.62, -0.35
+
+    # 随机力方向（所有情形共用同一方向）
+    theta = rng.uniform(0.0, 2.0 * np.pi)
+    force_dir = np.array([np.cos(theta), np.sin(theta)])
+
+    # 时间设置
+    t_span = (0.0, 22.0)
+    t_eval = np.linspace(t_span[0], t_span[1], 2400)
+
+    # 用随机权重构造截断级数初值
+    wx = rng.uniform(0.2, 1.0, size=n_modes)
+    wy = rng.uniform(0.2, 1.0, size=n_modes)
+    wx = wx / np.sum(wx)
+    wy = wy / np.sum(wy)
+    u0 = x0 * wx
+    v0 = y0 * wy
+
+    def build_ode(case_name):
+        omega2 = omegas ** 2
+
+        def ode(t, state):
+            # state = [u(0:n), v(0:n), udot(0:n), vdot(0:n), z, trigger]
+            u = state[0:n_modes]
+            v = state[n_modes:2 * n_modes]
+            ud = state[2 * n_modes:3 * n_modes]
+            vd = state[3 * n_modes:4 * n_modes]
+            z = state[-2]
+            trigger = state[-1]
+
+            x = np.sum(u)
+            y = np.sum(v)
+            r = np.hypot(x, y)
+
+            # 情况3：回复项后期发散（将第1模态变为负阻尼）
+            c = c_base.copy()
+            if case_name == "case3" and t >= 3.4:
+                c[0] = -0.16
+
+            uacc = -2.0 * c * ud - omega2 * u
+            vacc = -2.0 * c * vd - omega2 * v
+
+            # 越界触发后锁存：trigger 快速趋近 1，不再回退
+            if (r > r_bound) or (trigger > 1e-3):
+                trigger_dot = 35.0 * (1.0 - trigger)
+                zdot = -gamma * z
+            else:
+                trigger_dot = 0.0
+                zdot = 0.0
+
+            # 下落完成后冻结水平运动
+            if z <= z_stop and trigger > 1e-3:
+                ud = np.zeros_like(ud)
+                vd = np.zeros_like(vd)
+                uacc = np.zeros_like(uacc)
+                vacc = np.zeros_like(vacc)
+                zdot = 0.0
+                trigger_dot = 0.0
+
+            return np.concatenate([ud, vd, uacc, vacc, [zdot, trigger_dot]])
+
+        def event_touch_plane(_, state):
+            return state[-2] - z_stop
+
+        event_touch_plane.terminal = True
+        event_touch_plane.direction = -1
+        return ode, event_touch_plane
+
+    scenarios = [
+        {
+            "name": "case1",
+            "title": "Case 1: Recovered Back Inside Boundary",
+            "speed": 0.72,
+        },
+        {
+            "name": "case2",
+            "title": "Case 2: Direct Boundary Breakout",
+            "speed": 3.65,
+        },
+        {
+            "name": "case3",
+            "title": "Case 3: Delayed Divergence Breakout",
+            "speed": 1.08,
+        },
+    ]
+
+    results = []
+    for sc in scenarios:
+        max_attempts = 5 if sc["name"] in ("case2", "case3") else 1
+        attempt = 0
+        solved = False
+        speed_scale = 1.0
+        diverge_shift = 0.0
+        rs_payload = None
+
+        while attempt < max_attempts and not solved:
+            attempt += 1
+            speed = sc["speed"] * speed_scale
+
+            vx0 = speed * force_dir[0]
+            vy0 = speed * force_dir[1]
+
+            # 速度按随机权重分解到各模态
+            vwx = rng.uniform(0.2, 1.0, size=n_modes)
+            vwy = rng.uniform(0.2, 1.0, size=n_modes)
+            vwx = vwx / np.sum(vwx)
+            vwy = vwy / np.sum(vwy)
+            ud0 = vx0 * vwx
+            vd0 = vy0 * vwy
+
+            state0 = np.concatenate([u0, v0, ud0, vd0, [z0, 0.0]])
+
+            # 情况3重试时逐步提前负阻尼生效时刻，增强可越界性
+            case_name = sc["name"]
+            case3_switch_time = 3.4
+            if case_name == "case3" and diverge_shift > 0.0:
+                case3_switch_time = max(1.2, 3.4 - diverge_shift)
+
+            def build_case_ode(name_for_ode, switch_t):
+                omega2 = omegas ** 2
+
+                def ode(t, state):
+                    u = state[0:n_modes]
+                    v = state[n_modes:2 * n_modes]
+                    ud = state[2 * n_modes:3 * n_modes]
+                    vd = state[3 * n_modes:4 * n_modes]
+                    z = state[-2]
+                    trigger = state[-1]
+
+                    x = np.sum(u)
+                    y = np.sum(v)
+                    r = np.hypot(x, y)
+
+                    c = c_base.copy()
+                    if name_for_ode == "case3" and t >= switch_t:
+                        c[0] = -0.16
+
+                    uacc = -2.0 * c * ud - omega2 * u
+                    vacc = -2.0 * c * vd - omega2 * v
+
+                    if (r > r_bound) or (trigger > 1e-3):
+                        trigger_dot = 35.0 * (1.0 - trigger)
+                        zdot = -gamma * z
+                    else:
+                        trigger_dot = 0.0
+                        zdot = 0.0
+
+                    if z <= z_stop and trigger > 1e-3:
+                        ud = np.zeros_like(ud)
+                        vd = np.zeros_like(vd)
+                        uacc = np.zeros_like(uacc)
+                        vacc = np.zeros_like(vacc)
+                        zdot = 0.0
+                        trigger_dot = 0.0
+
+                    return np.concatenate([ud, vd, uacc, vacc, [zdot, trigger_dot]])
+
+                return ode
+
+            ode = build_case_ode(case_name, case3_switch_time)
+            _, event = build_ode(case_name)
+            sol = solve_ivp(
+                ode,
+                t_span,
+                state0,
+                t_eval=t_eval,
+                events=event,
+                method="DOP853",
+                rtol=1e-8,
+                atol=1e-10,
+            )
+
+            u = sol.y[0:n_modes, :]
+            v = sol.y[n_modes:2 * n_modes, :]
+            ud = sol.y[2 * n_modes:3 * n_modes, :]
+            vd = sol.y[3 * n_modes:4 * n_modes, :]
+            z = sol.y[-2, :]
+            trigger = sol.y[-1, :]
+
+            x = np.sum(u, axis=0)
+            y = np.sum(v, axis=0)
+            vx = np.sum(ud, axis=0)
+            vy = np.sum(vd, axis=0)
+            r = np.hypot(x, y)
+
+            crossed = np.max(r) > r_bound
+            dropped = z[-1] < z0
+
+            ok = True
+            if sc["name"] in ("case2", "case3"):
+                ok = crossed and dropped
+
+            rs_payload = {
+                "t": sol.t,
+                "x": x,
+                "y": y,
+                "z": z,
+                "vx": vx,
+                "vy": vy,
+                "r": r,
+                "trigger": trigger,
+                "title": sc["title"],
+                "crossed": crossed,
+                "dropped": dropped,
+            }
+
+            if ok:
+                solved = True
+            else:
+                speed_scale *= 1.35
+                diverge_shift += 0.35
+
+        if not solved and rs_payload is not None and sc["name"] in ("case2", "case3"):
+            status = []
+            if not rs_payload["crossed"]:
+                status.append("未越界")
+            if not rs_payload["dropped"]:
+                status.append("终点高度未降低")
+            status_text = "，".join(status)
+            warnings.warn(f"{sc['name']} still does not satisfy constraints after retries: {status_text}. Plotting continues.", RuntimeWarning)
+            rs_payload["title"] = rs_payload["title"] + " (Constraint Not Met)"
+
+        if rs_payload is not None:
+            results.append(rs_payload)
+
+    # ----- 绘图：上3个三维轨迹，下3个相空间 -----
+    # 展示顺序按需求调整为：原1、原3、原2
+    display_order = [0, 2, 1]
+    display_names = ["轻微失衡状态", "严重失衡状态", "倒地状态"]
+    display_results = []
+    for idx, disp_name in zip(display_order, display_names):
+        item = results[idx].copy()
+        item["display_title"] = disp_name
+        display_results.append(item)
+
+    fig = plt.figure(figsize=(18, 10))
+
+    for i, rs in enumerate(display_results):
+        ax = fig.add_subplot(2, 3, i + 1, projection="3d")
+        ax.plot(rs["x"], rs["y"], rs["z"], color="#2b5f75", lw=1.2, alpha=0.9)
+        ax.scatter(rs["x"], rs["y"], rs["z"], c=rs["z"], cmap="viridis", s=4)
+
+        # 起点与终点
+        ax.scatter(rs["x"][0], rs["y"][0], rs["z"][0], color="red", s=45, marker="o", label="start")
+        ax.scatter(rs["x"][-1], rs["y"][-1], rs["z"][-1], color="blue", s=45, marker="s", label="end")
+
+        # 边界圆（在 z=z0 平面示意）
+        th = np.linspace(0.0, 2.0 * np.pi, 200)
+        ax.plot(r_bound * np.cos(th), r_bound * np.sin(th), np.full_like(th, z0), "k--", lw=1.0, alpha=0.7)
+
+        ax.set_xlabel("x")
+        ax.set_ylabel("y")
+        ax.set_zlabel("z")
+        ax.set_title(rs["display_title"])
+        ax.legend(loc="upper left", fontsize=8)
+
+    for i, rs in enumerate(display_results):
+        ax = fig.add_subplot(2, 3, i + 4)
+
+        def add_green_gradient_curve(px, pv, style="solid", scale=1.0):
+            points = np.column_stack((px, pv)).reshape(-1, 1, 2)
+            segments = np.concatenate([points[:-1], points[1:]], axis=1)
+            progress = np.linspace(0.15, 1.0, len(px) - 1)
+            lc = LineCollection(
+                segments,
+                cmap="Greens",
+                linewidths=2.2 * scale,
+                alpha=0.95,
+                linestyles=style,
+            )
+            lc.set_array(progress)
+            lc.set_clim(0.0, 1.0)
+            ax.add_collection(lc)
+
+        add_green_gradient_curve(rs["x"], rs["vx"], style="solid", scale=1.0)
+        add_green_gradient_curve(rs["y"], rs["vy"], style="dashed", scale=0.95)
+
+        # Start/end markers for both trajectories.
+        ax.scatter(rs["x"][0], rs["vx"][0], color="#6e6e6e", s=42, marker="o", zorder=4)
+        ax.scatter(rs["y"][0], rs["vy"][0], color="#6e6e6e", s=42, marker="o", zorder=4)
+        ax.scatter(rs["x"][-1], rs["vx"][-1], color="#0b6e2e", s=62, marker="*", zorder=5)
+        ax.scatter(rs["y"][-1], rs["vy"][-1], color="#0b6e2e", s=62, marker="*", zorder=5)
+
+        ax.text(rs["x"][-1], rs["vx"][-1], " End", color="#0b6e2e", fontsize=8)
+        ax.text(rs["x"][0], rs["vx"][0], " Start", color="#4f4f4f", fontsize=8)
+
+        ax.autoscale_view()
+        ax.set_xlabel("Position")
+        ax.set_ylabel("Velocity")
+        ax.set_title(rs["display_title"] + " 相空间")
+        ax.grid(alpha=0.35)
+
+        legend_handles = [
+            Line2D([0], [0], color="#2f8f46", lw=2.2, linestyle="solid", label="x-vx trajectory"),
+            Line2D([0], [0], color="#2f8f46", lw=2.2, linestyle="dashed", label="y-vy trajectory"),
+            Line2D([0], [0], marker="o", color="w", markerfacecolor="#6e6e6e", markeredgecolor="#6e6e6e", markersize=6, label="Start"),
+            Line2D([0], [0], marker="*", color="w", markerfacecolor="#0b6e2e", markeredgecolor="#0b6e2e", markersize=9, label="End (darkest green)"),
+        ]
+        ax.legend(handles=legend_handles, loc="best", fontsize=8)
+
+    fig.suptitle("LIPM Boundary-Crossing Behaviors (3D Trajectories + Phase Space)", fontsize=15, y=0.98)
+    plt.tight_layout()
+
+    if save_path is not None:
+        plt.savefig(save_path, dpi=220, bbox_inches="tight")
+    plt.show()
+
+    # 返回方程文本，便于写入论文
+    equation_text = (
+        "x(t)=sum_i u_i(t), y(t)=sum_i v_i(t); "
+        "u_i''+2 c_i u_i'+w_i^2 u_i=0, v_i''+2 c_i v_i'+w_i^2 v_i=0; "
+        "if sqrt(x^2+y^2)>R then trigger=1 and z'=-gamma z until z<=z_stop."
+    )
+    return results, equation_text
+
+
+if __name__ == "__main__":
+    plot_lipm_three_cases()

@@ -1,0 +1,102 @@
+\section{问题四：双人平均场博弈下的资源调度}
+
+\subsection{建模目标与扩展状态}
+原问题四将资源调度建模为“给定对手策略”下的优化问题。为更贴近真实对抗，本节将其扩展为双方同时决策的双人博弈，并采用平均场博弈（Mean Field Game, MFG）近似求解。
+
+单机器人状态写为
+\[
+x=(s,\mathbf{r},f),\quad
+s\in\mathcal{S}=\{0,1,2,3,4\},\quad
+\mathbf{r}=(r_1,r_2,r_3),\quad
+f\in\{0,1\},
+\]
+其中 $r_1,r_2,r_3$ 分别表示人工复位、战术暂停、紧急维修剩余量（上限分别为 $2,2,1$）。双人联合状态为 $(x,x')$；在平均场近似下，对手仅通过分布 $\mu_t$ 进入决策。
+
+\subsection{动作与转移结构}
+动作由战术动作与资源动作组成：
+\[
+(a,u)\in\mathcal{A}_{\text{tac}}\times\mathcal{U},\qquad
+\mathcal{U}=\{\texttt{none},\texttt{mr},\texttt{tp},\texttt{er}\}.
+\]
+对应地，转移核可分解为
+\[
+P(x_{t+1},x'_{t+1}\mid x_t,x'_t,a_t,u_t,a'_t,u'_t)
+=
+P_{\text{res}}\cdot P_{\text{combat}}.
+\]
+其中 $P_{\text{res}}$ 描述资源使用后的状态重置与故障更新，$P_{\text{combat}}$ 由攻防动作相互作用驱动，并与前文反冲表/正冲表一致地刻画受击与失稳趋势。
+
+\subsection{收益函数与 BO3 目标}
+在离散阶段 $t$ 下，定义即时收益
+\[
+R_t = \Delta_{\text{harm}} - \lambda\,\mathbf{1}_{\text{self-unstable}} - c_{\text{res}}(u_t),
+\]
+其中 $\Delta_{\text{harm}}$ 表示对对手造成的期望状态恶化，$\lambda$ 为自身失稳惩罚系数，$c_{\text{res}}$ 为资源消耗代价。BO3 总目标是最大化跨局累计收益与终局胜负回报。
+
+\subsection{平均场博弈方程}
+在对称理性假设下，双方共享策略族 $\pi_t(a,u\mid x)$。对任意时刻 $t$ 与状态 $x$，值函数满足离散 HJB 方程
+\[
+V_t(x)=\max_{a,u}\sum_{x'}\mu_t(x')\sum_{a',u'}\pi_t(a',u'\mid x')
+\Big[
+R(x,x',a,u,a',u')
++\gamma\sum_{\bar x}P(\bar x\mid x,x',a,u,a',u')V_{t+1}(\bar x)
+\Big].
+\]
+给定策略后，状态分布由离散 Fokker--Planck 方程推进：
+\[
+\mu_{t+1}(\bar x)=
+\sum_x\mu_t(x)\sum_{a,u}\pi_t(a,u\mid x)
+\sum_{x'}\mu_t(x')\sum_{a',u'}\pi_t(a',u'\mid x')
+P(\bar x\mid x,x',a,u,a',u').
+\]
+均衡条件为：策略在给定分布下最优，且分布由该策略自洽产生。
+
+\subsection{平均场虚拟博弈求解}
+本文采用平均场虚拟博弈（Mean Field Fictitious Play）：先固定分布解 HJB 得到最优响应，再固定策略更新分布，循环至收敛。
+
+\begin{algorithm}[H]
+\caption{BO3 资源博弈的平均场虚拟博弈算法}
+\label{alg:problem4_mfg}
+\begin{algorithmic}[1]
+\Require 初始分布 $\mu_0$，折扣因子 $\gamma$，阶段数 $T$，收敛阈值 $\varepsilon$
+\Ensure 均衡近似策略 $\pi^*$ 与对应胜率评估
+\State 初始化策略 $\pi^{(0)}$ 与分布序列 $\mu^{(0)}$
+\For{$k=0,1,2,\dots$}
+    \State 固定 $\mu^{(k)}$，用反向动态规划求最优响应 $\pi^{\mathrm{br}}$
+    \State 策略更新：$\pi^{(k+1)}\leftarrow(1-\eta)\pi^{(k)}+\eta\pi^{\mathrm{br}}$
+    \State 固定 $\pi^{(k+1)}$，用 FP 方程前向更新分布 $\mu^{(k+1)}$
+    \If{$\max_t\|\mu_t^{(k+1)}-\mu_t^{(k)}\|_1<\varepsilon$}
+        \State \textbf{break}
+    \EndIf
+\EndFor
+\State 通过蒙特卡洛自博弈估计 BO3 胜率与资源使用模式
+\State \Return $\pi^*,\mu^*$ 与统计指标
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{实验代码与结果读取}
+为保证可复现性，问题四结果由脚本自动生成并在编译时读入：
+
+\immediate\write18{python Experiment/problem4_experiment.py}
+\IfFileExists{Experiment/results/problem4_mfg_table.tex}{%
+\input{Experiment/results/problem4_mfg_table.tex}%
+}{%
+\textbf{提示：}未检测到问题四实验表格，请先执行 \texttt{python Experiment/problem4\_experiment.py}。%
+}
+
+\IfFileExists{Experiment/results/problem4_mfg_paragraph.tex}{%
+\input{Experiment/results/problem4_mfg_paragraph.tex}%
+}{%
+\textbf{提示：}未检测到问题四实验分析段落，请先执行 \texttt{python Experiment/problem4\_experiment.py}。%
+}
+
+\subsection{与原模型对比}
+与“固定对手策略 + 线性规划近似”相比，MFG 模型将资源动作与战术动作统一进同一决策层，并允许对手同步优化，因而能够描述更真实的高水平博弈情形。其代价是状态维度和计算复杂度上升，但通过状态聚合、有限阶段抽样与虚拟博弈迭代，仍可在工程上稳定求解。
+
+\subsection{本问题结论}
+\immediate\write18{python Experiment/problem4_experiment.py}
+\IfFileExists{Experiment/results/problem4_mfg_conclusion.tex}{%
+\input{Experiment/results/problem4_mfg_conclusion.tex}%
+}{%
+\textbf{提示：}未检测到问题四自动结论，请先执行 \texttt{python Experiment/problem4\_experiment.py}。%
+}

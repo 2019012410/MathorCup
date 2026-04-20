@@ -1,0 +1,54 @@
+{
+  "model": "two-player mean-field game for BO3 with resources",
+  "horizon": 6,
+  "gamma": 0.95,
+  "fault_rate": 0.12,
+  "iterations": 6,
+  "self_play_win_rate": 0.4973,
+  "win_rate_vs_random": 0.9665,
+  "random_vs_random": 0.522,
+  "policy_snippets": [
+    {
+      "state": {
+        "s": 0,
+        "r1": 2,
+        "r2": 2,
+        "r3": 1,
+        "f": 0
+      },
+      "action": {
+        "tactical_id": "axe_kick",
+        "tactical_name_cn": "下劈腿",
+        "resource": "none"
+      }
+    },
+    {
+      "state": {
+        "s": 4,
+        "r1": 2,
+        "r2": 2,
+        "r3": 1,
+        "f": 1
+      },
+      "action": {
+        "tactical_id": "axe_kick",
+        "tactical_name_cn": "下劈腿",
+        "resource": "mr"
+      }
+    },
+    {
+      "state": {
+        "s": 2,
+        "r1": 1,
+        "r2": 1,
+        "r3": 0,
+        "f": 0
+      },
+      "action": {
+        "tactical_id": "cross",
+        "tactical_name_cn": "后手直拳",
+        "resource": "none"
+      }
+    }
+  ]
+}

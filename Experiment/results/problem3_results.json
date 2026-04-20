@@ -1,0 +1,21 @@
+{
+  "opponent_profile": "random_counter",
+  "horizon": 5,
+  "gamma": 0.92,
+  "lambda": 0.35,
+  "best_sequence_ids": [
+    "jab",
+    "cross",
+    "high_guard",
+    "front_kick",
+    "axe_kick"
+  ],
+  "best_sequence_cn": [
+    "刺拳",
+    "后手直拳",
+    "高位防御",
+    "前蹬腿",
+    "下劈腿"
+  ],
+  "early_stable_ratio": 1.0
+}

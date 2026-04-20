@@ -1,0 +1,1304 @@
+{
+  "defense_matches": [
+    {
+      "attack": "jab",
+      "defender_state": "0",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "parry_single",
+          "score": 0.425
+        },
+        {
+          "rank": 2,
+          "defense": "cross_block",
+          "score": 0.367
+        },
+        {
+          "rank": 3,
+          "defense": "head_guard",
+          "score": 0.345
+        }
+      ]
+    },
+    {
+      "attack": "jab",
+      "defender_state": "1",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "parry_single",
+          "score": 0.425
+        },
+        {
+          "rank": 2,
+          "defense": "cross_block",
+          "score": 0.367
+        },
+        {
+          "rank": 3,
+          "defense": "head_guard",
+          "score": 0.345
+        }
+      ]
+    },
+    {
+      "attack": "jab",
+      "defender_state": "2",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "parry_single",
+          "score": 0.425
+        },
+        {
+          "rank": 2,
+          "defense": "cross_block",
+          "score": 0.367
+        },
+        {
+          "rank": 3,
+          "defense": "head_guard",
+          "score": 0.345
+        }
+      ]
+    },
+    {
+      "attack": "jab",
+      "defender_state": "3",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "parry_single",
+          "score": 0.425
+        },
+        {
+          "rank": 2,
+          "defense": "cross_block",
+          "score": 0.367
+        },
+        {
+          "rank": 3,
+          "defense": "head_guard",
+          "score": 0.345
+        }
+      ]
+    },
+    {
+      "attack": "jab",
+      "defender_state": "4",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "ground_defense",
+          "score": 0.094
+        },
+        {
+          "rank": 2,
+          "defense": "quick_getup",
+          "score": -0.1
+        }
+      ]
+    },
+    {
+      "attack": "cross",
+      "defender_state": "0",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "parry_single",
+          "score": 0.405
+        },
+        {
+          "rank": 2,
+          "defense": "cross_block",
+          "score": 0.352
+        },
+        {
+          "rank": 3,
+          "defense": "side_sway",
+          "score": 0.329
+        }
+      ]
+    },
+    {
+      "attack": "cross",
+      "defender_state": "1",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "parry_single",
+          "score": 0.405
+        },
+        {
+          "rank": 2,
+          "defense": "cross_block",
+          "score": 0.352
+        },
+        {
+          "rank": 3,
+          "defense": "side_sway",
+          "score": 0.329
+        }
+      ]
+    },
+    {
+      "attack": "cross",
+      "defender_state": "2",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "parry_single",
+          "score": 0.405
+        },
+        {
+          "rank": 2,
+          "defense": "cross_block",
+          "score": 0.352
+        },
+        {
+          "rank": 3,
+          "defense": "side_sway",
+          "score": 0.329
+        }
+      ]
+    },
+    {
+      "attack": "cross",
+      "defender_state": "3",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "parry_single",
+          "score": 0.405
+        },
+        {
+          "rank": 2,
+          "defense": "cross_block",
+          "score": 0.352
+        },
+        {
+          "rank": 3,
+          "defense": "side_sway",
+          "score": 0.329
+        }
+      ]
+    },
+    {
+      "attack": "cross",
+      "defender_state": "4",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "ground_defense",
+          "score": 0.094
+        },
+        {
+          "rank": 2,
+          "defense": "quick_getup",
+          "score": -0.1
+        }
+      ]
+    },
+    {
+      "attack": "hook",
+      "defender_state": "0",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "duck_dodge",
+          "score": 0.366
+        },
+        {
+          "rank": 2,
+          "defense": "elbow_block",
+          "score": 0.347
+        },
+        {
+          "rank": 3,
+          "defense": "parry_single",
+          "score": 0.34
+        }
+      ]
+    },
+    {
+      "attack": "hook",
+      "defender_state": "1",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "duck_dodge",
+          "score": 0.366
+        },
+        {
+          "rank": 2,
+          "defense": "elbow_block",
+          "score": 0.347
+        },
+        {
+          "rank": 3,
+          "defense": "parry_single",
+          "score": 0.34
+        }
+      ]
+    },
+    {
+      "attack": "hook",
+      "defender_state": "2",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "duck_dodge",
+          "score": 0.366
+        },
+        {
+          "rank": 2,
+          "defense": "elbow_block",
+          "score": 0.347
+        },
+        {
+          "rank": 3,
+          "defense": "parry_single",
+          "score": 0.34
+        }
+      ]
+    },
+    {
+      "attack": "hook",
+      "defender_state": "3",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "duck_dodge",
+          "score": 0.366
+        },
+        {
+          "rank": 2,
+          "defense": "elbow_block",
+          "score": 0.347
+        },
+        {
+          "rank": 3,
+          "defense": "parry_single",
+          "score": 0.34
+        }
+      ]
+    },
+    {
+      "attack": "hook",
+      "defender_state": "4",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "ground_defense",
+          "score": 0.094
+        },
+        {
+          "rank": 2,
+          "defense": "quick_getup",
+          "score": -0.1
+        }
+      ]
+    },
+    {
+      "attack": "uppercut",
+      "defender_state": "0",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "parry_single",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense": "elbow_block",
+          "score": 0.322
+        },
+        {
+          "rank": 3,
+          "defense": "cross_block",
+          "score": 0.302
+        }
+      ]
+    },
+    {
+      "attack": "uppercut",
+      "defender_state": "1",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "parry_single",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense": "elbow_block",
+          "score": 0.322
+        },
+        {
+          "rank": 3,
+          "defense": "cross_block",
+          "score": 0.302
+        }
+      ]
+    },
+    {
+      "attack": "uppercut",
+      "defender_state": "2",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "parry_single",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense": "elbow_block",
+          "score": 0.322
+        },
+        {
+          "rank": 3,
+          "defense": "cross_block",
+          "score": 0.302
+        }
+      ]
+    },
+    {
+      "attack": "uppercut",
+      "defender_state": "3",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "parry_single",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense": "elbow_block",
+          "score": 0.322
+        },
+        {
+          "rank": 3,
+          "defense": "cross_block",
+          "score": 0.302
+        }
+      ]
+    },
+    {
+      "attack": "uppercut",
+      "defender_state": "4",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "ground_defense",
+          "score": 0.094
+        },
+        {
+          "rank": 2,
+          "defense": "quick_getup",
+          "score": -0.1
+        }
+      ]
+    },
+    {
+      "attack": "front_kick",
+      "defender_state": "0",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "parry_single",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense": "back_step",
+          "score": 0.317
+        },
+        {
+          "rank": 3,
+          "defense": "low_parry",
+          "score": 0.298
+        }
+      ]
+    },
+    {
+      "attack": "front_kick",
+      "defender_state": "1",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "parry_single",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense": "back_step",
+          "score": 0.317
+        },
+        {
+          "rank": 3,
+          "defense": "low_parry",
+          "score": 0.298
+        }
+      ]
+    },
+    {
+      "attack": "front_kick",
+      "defender_state": "2",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "parry_single",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense": "back_step",
+          "score": 0.317
+        },
+        {
+          "rank": 3,
+          "defense": "low_parry",
+          "score": 0.298
+        }
+      ]
+    },
+    {
+      "attack": "front_kick",
+      "defender_state": "3",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "parry_single",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense": "back_step",
+          "score": 0.317
+        },
+        {
+          "rank": 3,
+          "defense": "low_parry",
+          "score": 0.298
+        }
+      ]
+    },
+    {
+      "attack": "front_kick",
+      "defender_state": "4",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "ground_defense",
+          "score": 0.094
+        },
+        {
+          "rank": 2,
+          "defense": "quick_getup",
+          "score": -0.1
+        }
+      ]
+    },
+    {
+      "attack": "roundhouse",
+      "defender_state": "0",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "spin_dodge",
+          "score": 0.361
+        },
+        {
+          "rank": 2,
+          "defense": "duck_dodge",
+          "score": 0.341
+        },
+        {
+          "rank": 3,
+          "defense": "parry_single",
+          "score": 0.34
+        }
+      ]
+    },
+    {
+      "attack": "roundhouse",
+      "defender_state": "1",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "spin_dodge",
+          "score": 0.361
+        },
+        {
+          "rank": 2,
+          "defense": "duck_dodge",
+          "score": 0.341
+        },
+        {
+          "rank": 3,
+          "defense": "parry_single",
+          "score": 0.34
+        }
+      ]
+    },
+    {
+      "attack": "roundhouse",
+      "defender_state": "2",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "spin_dodge",
+          "score": 0.361
+        },
+        {
+          "rank": 2,
+          "defense": "duck_dodge",
+          "score": 0.341
+        },
+        {
+          "rank": 3,
+          "defense": "parry_single",
+          "score": 0.34
+        }
+      ]
+    },
+    {
+      "attack": "roundhouse",
+      "defender_state": "3",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "spin_dodge",
+          "score": 0.361
+        },
+        {
+          "rank": 2,
+          "defense": "duck_dodge",
+          "score": 0.341
+        },
+        {
+          "rank": 3,
+          "defense": "parry_single",
+          "score": 0.34
+        }
+      ]
+    },
+    {
+      "attack": "roundhouse",
+      "defender_state": "4",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "ground_defense",
+          "score": 0.094
+        },
+        {
+          "rank": 2,
+          "defense": "quick_getup",
+          "score": -0.1
+        }
+      ]
+    },
+    {
+      "attack": "axe_kick",
+      "defender_state": "0",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "parry_single",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense": "spin_dodge",
+          "score": 0.296
+        },
+        {
+          "rank": 3,
+          "defense": "head_guard",
+          "score": 0.295
+        }
+      ]
+    },
+    {
+      "attack": "axe_kick",
+      "defender_state": "1",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "parry_single",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense": "spin_dodge",
+          "score": 0.296
+        },
+        {
+          "rank": 3,
+          "defense": "head_guard",
+          "score": 0.295
+        }
+      ]
+    },
+    {
+      "attack": "axe_kick",
+      "defender_state": "2",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "parry_single",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense": "spin_dodge",
+          "score": 0.296
+        },
+        {
+          "rank": 3,
+          "defense": "head_guard",
+          "score": 0.295
+        }
+      ]
+    },
+    {
+      "attack": "axe_kick",
+      "defender_state": "3",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "parry_single",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense": "spin_dodge",
+          "score": 0.296
+        },
+        {
+          "rank": 3,
+          "defense": "head_guard",
+          "score": 0.295
+        }
+      ]
+    },
+    {
+      "attack": "axe_kick",
+      "defender_state": "4",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "ground_defense",
+          "score": 0.094
+        },
+        {
+          "rank": 2,
+          "defense": "quick_getup",
+          "score": -0.1
+        }
+      ]
+    },
+    {
+      "attack": "side_kick",
+      "defender_state": "0",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "spin_dodge",
+          "score": 0.336
+        },
+        {
+          "rank": 2,
+          "defense": "parry_single",
+          "score": 0.315
+        },
+        {
+          "rank": 3,
+          "defense": "head_guard",
+          "score": 0.295
+        }
+      ]
+    },
+    {
+      "attack": "side_kick",
+      "defender_state": "1",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "spin_dodge",
+          "score": 0.336
+        },
+        {
+          "rank": 2,
+          "defense": "parry_single",
+          "score": 0.315
+        },
+        {
+          "rank": 3,
+          "defense": "head_guard",
+          "score": 0.295
+        }
+      ]
+    },
+    {
+      "attack": "side_kick",
+      "defender_state": "2",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "spin_dodge",
+          "score": 0.336
+        },
+        {
+          "rank": 2,
+          "defense": "parry_single",
+          "score": 0.315
+        },
+        {
+          "rank": 3,
+          "defense": "head_guard",
+          "score": 0.295
+        }
+      ]
+    },
+    {
+      "attack": "side_kick",
+      "defender_state": "3",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "spin_dodge",
+          "score": 0.336
+        },
+        {
+          "rank": 2,
+          "defense": "parry_single",
+          "score": 0.315
+        },
+        {
+          "rank": 3,
+          "defense": "head_guard",
+          "score": 0.295
+        }
+      ]
+    },
+    {
+      "attack": "side_kick",
+      "defender_state": "4",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "ground_defense",
+          "score": 0.094
+        },
+        {
+          "rank": 2,
+          "defense": "quick_getup",
+          "score": -0.1
+        }
+      ]
+    },
+    {
+      "attack": "knee_strike",
+      "defender_state": "0",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "parry_single",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense": "spin_dodge",
+          "score": 0.296
+        },
+        {
+          "rank": 3,
+          "defense": "head_guard",
+          "score": 0.295
+        }
+      ]
+    },
+    {
+      "attack": "knee_strike",
+      "defender_state": "1",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "parry_single",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense": "spin_dodge",
+          "score": 0.296
+        },
+        {
+          "rank": 3,
+          "defense": "head_guard",
+          "score": 0.295
+        }
+      ]
+    },
+    {
+      "attack": "knee_strike",
+      "defender_state": "2",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "parry_single",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense": "spin_dodge",
+          "score": 0.296
+        },
+        {
+          "rank": 3,
+          "defense": "head_guard",
+          "score": 0.295
+        }
+      ]
+    },
+    {
+      "attack": "knee_strike",
+      "defender_state": "3",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "parry_single",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense": "spin_dodge",
+          "score": 0.296
+        },
+        {
+          "rank": 3,
+          "defense": "head_guard",
+          "score": 0.295
+        }
+      ]
+    },
+    {
+      "attack": "knee_strike",
+      "defender_state": "4",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "ground_defense",
+          "score": 0.094
+        },
+        {
+          "rank": 2,
+          "defense": "quick_getup",
+          "score": -0.1
+        }
+      ]
+    },
+    {
+      "attack": "elbow",
+      "defender_state": "0",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "parry_single",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense": "elbow_block",
+          "score": 0.297
+        },
+        {
+          "rank": 3,
+          "defense": "spin_dodge",
+          "score": 0.296
+        }
+      ]
+    },
+    {
+      "attack": "elbow",
+      "defender_state": "1",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "parry_single",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense": "elbow_block",
+          "score": 0.297
+        },
+        {
+          "rank": 3,
+          "defense": "spin_dodge",
+          "score": 0.296
+        }
+      ]
+    },
+    {
+      "attack": "elbow",
+      "defender_state": "2",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "parry_single",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense": "elbow_block",
+          "score": 0.297
+        },
+        {
+          "rank": 3,
+          "defense": "spin_dodge",
+          "score": 0.296
+        }
+      ]
+    },
+    {
+      "attack": "elbow",
+      "defender_state": "3",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "parry_single",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense": "elbow_block",
+          "score": 0.297
+        },
+        {
+          "rank": 3,
+          "defense": "spin_dodge",
+          "score": 0.296
+        }
+      ]
+    },
+    {
+      "attack": "elbow",
+      "defender_state": "4",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "ground_defense",
+          "score": 0.094
+        },
+        {
+          "rank": 2,
+          "defense": "quick_getup",
+          "score": -0.1
+        }
+      ]
+    },
+    {
+      "attack": "low_kick",
+      "defender_state": "0",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "low_parry",
+          "score": 0.398
+        },
+        {
+          "rank": 2,
+          "defense": "parry_single",
+          "score": 0.34
+        },
+        {
+          "rank": 3,
+          "defense": "crouch_guard",
+          "score": 0.318
+        }
+      ]
+    },
+    {
+      "attack": "low_kick",
+      "defender_state": "1",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "low_parry",
+          "score": 0.398
+        },
+        {
+          "rank": 2,
+          "defense": "parry_single",
+          "score": 0.34
+        },
+        {
+          "rank": 3,
+          "defense": "crouch_guard",
+          "score": 0.318
+        }
+      ]
+    },
+    {
+      "attack": "low_kick",
+      "defender_state": "2",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "low_parry",
+          "score": 0.398
+        },
+        {
+          "rank": 2,
+          "defense": "parry_single",
+          "score": 0.34
+        },
+        {
+          "rank": 3,
+          "defense": "crouch_guard",
+          "score": 0.318
+        }
+      ]
+    },
+    {
+      "attack": "low_kick",
+      "defender_state": "3",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "low_parry",
+          "score": 0.398
+        },
+        {
+          "rank": 2,
+          "defense": "parry_single",
+          "score": 0.34
+        },
+        {
+          "rank": 3,
+          "defense": "crouch_guard",
+          "score": 0.318
+        }
+      ]
+    },
+    {
+      "attack": "low_kick",
+      "defender_state": "4",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "ground_defense",
+          "score": 0.094
+        },
+        {
+          "rank": 2,
+          "defense": "quick_getup",
+          "score": -0.1
+        }
+      ]
+    },
+    {
+      "attack": "spinning_back_kick",
+      "defender_state": "0",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "parry_single",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense": "spin_dodge",
+          "score": 0.311
+        },
+        {
+          "rank": 3,
+          "defense": "head_guard",
+          "score": 0.295
+        }
+      ]
+    },
+    {
+      "attack": "spinning_back_kick",
+      "defender_state": "1",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "parry_single",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense": "spin_dodge",
+          "score": 0.311
+        },
+        {
+          "rank": 3,
+          "defense": "head_guard",
+          "score": 0.295
+        }
+      ]
+    },
+    {
+      "attack": "spinning_back_kick",
+      "defender_state": "2",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "parry_single",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense": "spin_dodge",
+          "score": 0.311
+        },
+        {
+          "rank": 3,
+          "defense": "head_guard",
+          "score": 0.295
+        }
+      ]
+    },
+    {
+      "attack": "spinning_back_kick",
+      "defender_state": "3",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "parry_single",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense": "spin_dodge",
+          "score": 0.311
+        },
+        {
+          "rank": 3,
+          "defense": "head_guard",
+          "score": 0.295
+        }
+      ]
+    },
+    {
+      "attack": "spinning_back_kick",
+      "defender_state": "4",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "ground_defense",
+          "score": 0.094
+        },
+        {
+          "rank": 2,
+          "defense": "quick_getup",
+          "score": -0.1
+        }
+      ]
+    },
+    {
+      "attack": "flying_knee",
+      "defender_state": "0",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "parry_single",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense": "spin_dodge",
+          "score": 0.296
+        },
+        {
+          "rank": 3,
+          "defense": "head_guard",
+          "score": 0.295
+        }
+      ]
+    },
+    {
+      "attack": "flying_knee",
+      "defender_state": "1",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "parry_single",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense": "spin_dodge",
+          "score": 0.296
+        },
+        {
+          "rank": 3,
+          "defense": "head_guard",
+          "score": 0.295
+        }
+      ]
+    },
+    {
+      "attack": "flying_knee",
+      "defender_state": "2",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "parry_single",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense": "spin_dodge",
+          "score": 0.296
+        },
+        {
+          "rank": 3,
+          "defense": "head_guard",
+          "score": 0.295
+        }
+      ]
+    },
+    {
+      "attack": "flying_knee",
+      "defender_state": "3",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "parry_single",
+          "score": 0.34
+        },
+        {
+          "rank": 2,
+          "defense": "spin_dodge",
+          "score": 0.296
+        },
+        {
+          "rank": 3,
+          "defense": "head_guard",
+          "score": 0.295
+        }
+      ]
+    },
+    {
+      "attack": "flying_knee",
+      "defender_state": "4",
+      "top_defenses": [
+        {
+          "rank": 1,
+          "defense": "ground_defense",
+          "score": 0.094
+        },
+        {
+          "rank": 2,
+          "defense": "quick_getup",
+          "score": -0.1
+        }
+      ]
+    }
+  ]
+}

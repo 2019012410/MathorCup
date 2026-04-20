@@ -1,0 +1,12 @@
+\section{问题一：攻击动作评估与优先选择}
+\subsection{攻击动作综合效用排序}
+基于参数化样本表，本文计算各攻击动作的综合效用 $V(a)$，并按降序给出优先级。实验参数取 $\alpha=1.0, \beta=1.5$（稳定性权重略高）。
+
+\immediate\write18{python Experiment/problem1_experiment.py}
+\IfFileExists{Experiment/results/problem1_top5_table.tex}{%
+\input{Experiment/results/problem1_top5_table.tex}%
+}{%
+\textbf{提示：}未检测到自动生成的结果表，请先执行 \texttt{python Experiment/problem1\_experiment.py}。%
+}
+
+\textit{注：完整13种排序见 \texttt{Experiment/results/problem1\_results.json}。当前排序用于算法检验与策略对比，不应直接解读为高保真实测结论。}

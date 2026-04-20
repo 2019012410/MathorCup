@@ -1,0 +1,118 @@
+\section{数学建模部分}
+\subsection{五状态定义与自动推断规则}
+设机器人状态空间为 $S=\{0,1,2,3,4\}$，分别对应空闲、防御、轻微失衡、严重失衡和倒地。为减少人工标注带来的主观偏差，本文采用统一、可复用的特征提取与状态划分规则：
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+特征名 & 物理含义 \\
+\midrule
+\texttt{torso\_ground\_contact} & 躯干是否触地 \\
+\texttt{torso\_inclination} & 躯干相对竖直方向的倾角 \\
+\texttt{root\_vel} & 机体质心平动速度 \\
+\texttt{root\_ang\_vel} & 机体角速度 \\
+\texttt{contact\_ground} & 足底是否保持有效接触 \\
+\texttt{arms\_raised} & 防御架势是否建立 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+状态推断决策树如下：
+\begin{align*}
+\mathrm{state} =
+\begin{cases}
+4\ (\text{倒地}), & \text{若 } \texttt{torso\_ground\_contact} \lor \texttt{torso\_inclination} > 60^\circ,\\
+3\ (\text{严重失衡}), & \text{若 } \texttt{torso\_inclination} > 30^\circ \lor \texttt{root\_ang\_vel} > 2.0 \\
+& \quad\lor \neg\texttt{contact\_ground},\\
+2\ (\text{轻微失衡}), & \text{若 } \texttt{torso\_inclination} > 10^\circ \lor \texttt{root\_vel} > 0.5 \\
+& \quad\lor \texttt{root\_ang\_vel} > 1.0,\\
+1\ (\text{防御}), & \text{若 } \texttt{arms\_raised} \land \texttt{root\_vel} < 0.2 \land \texttt{root\_ang\_vel} < 0.5,\\
+0\ (\text{空闲}), & \text{其他情况}.
+\end{cases}
+\end{align*}
+
+\subsection{反冲表与正冲表的严格定义}
+\textbf{反冲表}（Recoil Table）用于描述攻击动作结束后己方状态的转移概率：
+\[
+T_{\text{self}}(s' \mid s_0, a) = \mathbb{P}(\text{自身终态} = s' \mid \text{初态} = s_0, \text{动作} = a).
+\]
+\textbf{正冲表}（Opponent Effect Table）用于描述对手在受击条件下的状态转移规律：当其在命中瞬间处于状态 $t$ 时，被攻击 $a$ 命中后转为状态 $t'$ 的概率为
+\[
+T_{\text{opp}}^{\text{hit}}(t' \mid t, a) = \mathbb{P}(\text{对手终态} = t' \mid \text{命中时对手状态} = t, \text{动作} = a, \text{命中}).
+\]
+此外定义基础命中率 $p_{\text{hit}}(a \mid t)$ 及伤害权重 $w(t \to t')$（例如 $w(0\to4)=4.0$，$w(0\to3)=3.0$）。
+
+攻击 $a$ 对状态为 $t$ 的对手的期望破坏值：
+\[
+D(a \mid t) = p_{\text{hit}}(a \mid t) \sum_{t'} T_{\text{opp}}^{\text{hit}}(t' \mid t, a) \cdot w(t \to t').
+\]
+自身稳定性代价：
+\[
+U(a) = \sum_{s' \in \{2,3,4\}} T_{\text{self}}(s' \mid \text{Idle}, a).
+\]
+综合效用：
+\[
+V(a) = \alpha \cdot \mathbb{E}_{t}[D(a \mid t)] - \beta \cdot U(a),
+\]
+其中 $\alpha,\beta$ 为权重系数，$\mathbb{E}_{t}$ 表示对常见对手状态分布的期望。
+
+\subsection{动力学定性建模}
+为从物理层面解释机器人受击后的失衡机理，并在攻击参数与状态转移之间建立可解释联系，本文采用多模态线性倒立摆（LIPM）模型描述质心水平运动。
+
+\subsubsection{多模态 LIPM 方程}
+质心水平运动由 $6$ 个独立模态叠加而成：
+\begin{equation}
+x(t) = \sum_{i=1}^{6} u_i(t), \quad y(t) = \sum_{i=1}^{6} v_i(t)
+\end{equation}
+每个模态满足带阻尼的谐振子方程：
+\begin{equation}
+\ddot{u}_i + 2c_i \dot{u}_i + \omega_i^2 u_i = 0, \quad \ddot{v}_i + 2c_i \dot{v}_i + \omega_i^2 v_i = 0
+\end{equation}
+其中 $\omega_i$ 为模态固有频率，代表机器人摆动时的自然响应快慢；$c_i$ 为阻尼系数。
+\begin{itemize}
+\item $c_i > 0$：正阻尼，摆动能量被耗散，运动收敛，平衡可恢复。
+\item $c_i < 0$：负阻尼，系统从外界或自身控制回路中吸收能量，振幅不断扩大，最终发散并导致摔倒。
+\end{itemize}
+支撑域设为半径 $R=2.0$ 的圆形区域。一旦质心投影超出该边界，即触发不可逆摔倒过程（$z$ 轴按 $\dot{z}=-\gamma z$ 指数下落，直至触地停止）。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.72\linewidth]{physical/Figure_1.png}
+\caption{多模态 LIPM 微分方程仿真示意图}
+\label{fig:physical_lipm}
+\end{figure}
+
+\subsubsection{模态物理对应与攻击扰动}
+六个模态分别近似对应机器人不同身体部位的摆动特征，为攻击效果参数化提供接口。表~\ref{tab:modes} 给出了各模态的近似物理含义及典型攻击扰动方式。
+\begin{table}[H]
+\centering
+\caption{六模态物理对应与攻击扰动示例}
+\label{tab:modes}
+\begin{tabular}{c p{6cm} p{5cm}}
+\toprule
+模态编号 & 近似物理对应 & 攻击扰动示例 \\
+\midrule
+0, 1 & 躯干低频摆动（类似倒立摆主模态） & 重拳冲击主要激发此模态；负阻尼切换于此，模拟控制器核心失稳 \\
+2, 3 & 髋部中频晃动 & 扫腿或勾拳可能改变其阻尼或频率 \\
+4, 5 & 踝部/腿部高频微调 & 快速刺拳引发高频振铃，若阻尼不足则持续振荡 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsubsection{攻击效果的数学抽象}
+在机器人格斗中，攻击可抽象为两类基本扰动：
+\begin{itemize}
+\item \textbf{线性冲击}（刺拳、直拳、推击）：瞬间改变质心速度，给予初始动量。模型中以增加初始速度 $v_{x0}, v_{y0}$（参数 \texttt{speed}）实现。
+\item \textbf{旋转/失衡打击}（摆拳、扫腿、钩踢）：破坏机器人维持平衡的控制策略，使其自身调节动作反而加剧摆动。模型中将部分模态阻尼系数 $c_i$ 从正值切换为负值（例如 $c_0 = -0.16$）。
+\end{itemize}
+通过调节冲击幅度与负阻尼切换时机，可模拟不同招式造成的从“轻微踉跄”到“直接倒地”的多种失衡模式。
+
+\subsection{仿真实验方案（待执行）}
+本文目前给出的是参数采集与模型验证的实验方案，尚未开展大规模实测统计。后续工作可按以下流程推进：
+\begin{enumerate}[leftmargin=*]
+    \item 根据攻击动作库设置初始状态、冲击幅值与阻尼切换参数；
+    \item 在统一随机种子与回合长度下运行批量仿真，记录终态分布；
+    \item 生成 $T_{\text{self}}$ 与 $T_{\text{opp}}^{\text{hit}}$，再进入问题一至问题四的决策求解。
+\end{enumerate}
+
+\subsection{数据来源声明与结果局限}
+需要说明的是：当前仓库中的 JSON 结果文件属于“经验先验 + 合理化随机生成”的参数化样本，并非由完整物理仿真实验直接统计得到。因而，本文现阶段的主要贡献在于验证建模框架与算法流程的可运行性；对应数值结果仅具有方法演示意义，实际应用价值仍需结合后续实测进一步评估。
